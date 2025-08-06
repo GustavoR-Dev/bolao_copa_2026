@@ -1,0 +1,83 @@
+.table-container {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ranking-table thead {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.ranking-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #495057;
+}
+
+.ranking-table tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s ease;
+}
+
+.ranking-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.ranking-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.ranking-table td {
+    padding: 1.25rem 1.5rem;
+    vertical-align: middle;
+}
+
+/* Estilos para colunas específicas */
+.col-pos {
+    width: 10%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.col-user {
+    width: 65%;
+    font-weight: 500;
+}
+.col-pts {
+    width: 25%;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+/* Destaque para o usuário logado */
+.current-user {
+    background-color: #e7f1ff;
+    font-weight: bold;
+}
+.current-user .col-user {
+    color: #0056b3;
+}
+
+/* Ícones do pódio */
+.fa-trophy.gold { color: #ffd700; }
+.fa-trophy.silver { color: #c0c0c0; }
+.fa-trophy.bronze { color: #cd7f32; }
+
+/* Estados da tabela */
+.loading-state, .empty-state, .error-state {
+    text-align: center;
+    padding: 3rem;
+    color: #6c757d;
+    font-size: 1.1rem;
+}

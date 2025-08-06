@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolão Copa do Mundo 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <h1>Bolão Copa 2026</h1>
+                </div>
+                <nav class="nav-desktop">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="jogos.html">Meus Palpites</a></li>
+                        <li><a href="tabela.html">Tabela</a></li>
+                        <li id="adminLinkContainer" style="display: none;"><a href="todosJogos.html">Palpites</a></li>
+                    </ul>
+                </nav>
+                <!-- ÁREA DO USUÁRIO MODIFICADA -->
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="user-name" id="userName">Carregando...</span>
+                    <div class="user-dropdown">
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile">
+        <ul>
+            <li><a href="index.html" class="active">Início</a></li>
+            <li><a href="jogos.html">Meus Palpites</a></li>
+            <li><a href="tabela.html">Tabela</a></li>
+            <li id="adminLinkContainer" style="display: none;"><a href="todosJogos.html">Palpites</a></li>
+            <li><a href="#" id="logoutBtnMobile"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Copa do Mundo 2026</h2>
+                    <p>Faça seus palpites e dispute com seus amigos!</p>
+                </div>
+                <div class="hero-image">
+                    <i class="fas fa-trophy"></i>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <h3>Ações Rápidas</h3>
+                <div class="actions-grid">
+                    <button class="action-btn primary" onclick="window.location.href='palpites.html'">
+                        <i class="fas fa-plus"></i>
+                        <span>Fazer Palpite</span>
+                    </button>
+                    <button class="action-btn" onclick="window.location.href='tabela.html'">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Ver Tabela</span>
+                    </button>
+                    <button class="action-btn" onclick="window.location.href='jogos.html'">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Meus Palpites</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Jogos do Dia -->
+            <section class="jogos-hoje">
+                <div class="section-header">
+                    <h3>Jogos de Hoje</h3>
+                    <a href="jogos.html" class="ver-todos">Ver todos</a>
+                </div>
+                <div class="jogos-container">
+                    <div class="jogo-card">
+                        <div class="jogo-info">
+                            <div class="jogo-data">
+                                <span class="data">**/**</span>
+                                <span class="horario">**:**</span>
+                            </div>
+                            <div class="jogo-times">
+                                <div class="time">
+                                    <img src="" alt="" class="">
+                                    <span>Seleção 1</span>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="time">
+                                    <img src="" alt="" class="">
+                                    <span>Seleção 2</span>
+                                </div>
+                            </div>
+                            <div class="jogo-status">
+                                <span class="status palpitado">Palpite: *x*</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="jogo-card">
+                        <div class="jogo-info">
+                            <div class="jogo-data">
+                                <span class="data">**/**</span>
+                                <span class="horario">**:**</span>
+                            </div>
+                            <div class="jogo-times">
+                                <div class="time">
+                                    <img src="" alt="" class="">
+                                    <span>Seleção 1</span>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="time">
+                                    <img src="" alt="" class="">
+                                    <span>Seleção 2</span>
+                                </div>
+                            </div>
+                            <div class="jogo-status">
+                                <span class="status palpitado">Palpite: *x*</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Ranking -->
+                <section class="ranking-section">
+                    <div class="section-header">
+                        <h3>Tabela Geral</h3>
+                        <a href="tabela.html" class="ver-todos">Ver completo</a>
+                    </div>
+                    <div class="ranking-list">
+                        <div class="ranking-item destaque">
+                            <div class="posicao">1º</div>
+                            <div class="usuario">
+                                <div class="avatar">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <div class="info">
+                                    <span class="nome">***</span>
+                                    <span class="acertos">** acertos</span>
+                                </div>
+                            </div>
+                            <div class="pontos">***</div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="posicao">2º</div>
+                            <div class="usuario">
+                                <div class="avatar">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <div class="info">
+                                    <span class="nome">***</span>
+                                    <span class="acertos">** acertos</span>
+                                </div>
+                            </div>
+                            <div class="pontos">***</div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="posicao">3º</div>
+                            <div class="usuario">
+                                <div class="avatar">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="info">
+                                    <span class="nome">***</span>
+                                    <span class="acertos">** acertos</span>
+                                </div>
+                            </div>
+                            <div class="pontos">***</div>
+                        </div>
+                        <div class="ranking-item atual">
+                            <div class="posicao">*</div>
+                            <div class="usuario">
+                                <div class="avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="info">
+                                    <span class="nome">Você</span>
+                                    <span class="acertos">** acertos</span>
+                                </div>
+                            </div>
+                            <div class="pontos">***</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Meus Palpites Recentes -->
+                <section class="meus-palpites">
+                    <div class="section-header">
+                        <h3>Meus Palpites</h3>
+                        <a href="jogos.html" class="ver-todos">Ver todos</a>
+                    </div>
+                    <div class="palpites-list">
+                        <div class="palpite-item acertou">
+                            <div class="jogo-resumo">
+                                <span class="times">*** *x* ***</span>
+                                <span class="data">**/**</span>
+                            </div>
+                            <div class="palpite-info">
+                                <span class="palpite">Seu palpite: *x*</span>
+                                <span class="resultado acerto">
+                                    <i class="fas fa-check"></i>
+                                    +150 pts
+                                </span>
+                            </div>
+                        </div>
+                        <div class="palpite-item errou">
+                            <div class="jogo-resumo">
+                                <span class="times">*** *x* ***</span>
+                                <span class="data">**/**</span>
+                            </div>
+                            <div class="palpite-info">
+                                <span class="palpite">Seu palpite: *x*</span>
+                                <span class="resultado erro">
+                                    <i class="fas fa-times"></i>
+                                    0 pts
+                                </span>
+                            </div>
+                        </div>
+                        <div class="palpite-item acertou-parcial">
+                            <div class="jogo-resumo">
+                                <span class="times">*** *x* ***</span>
+                                <span class="data">10/06</span>
+                            </div>
+                            <div class="palpite-info">
+                                <span class="palpite">Seu palpite: *x*</span>
+                                <span class="resultado parcial">
+                                    <i class="fas fa-star-half-alt"></i>
+                                    +50 pts
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Estatísticas -->
+                <section class="estatisticas">
+                    <h3>Suas Estatísticas</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">**%</span>
+                                <span class="stat-label">Taxa de Acerto</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">*</span>
+                                <span class="stat-label">Sequência</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">*</span>
+                                <span class="stat-label">Placares Exatos</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">+***</span>
+                                <span class="stat-label">Pontos Hoje</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Notificações -->
+            <section class="notificacoes">
+                <h3>Notificações</h3>
+                <div class="notif-list">
+                    <div class="notif-item nova">
+                        <div class="notif-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="notif-content">
+                            <span class="notif-text">Anote sua senha de acesso para não ter que redefini-lá.</span>
+                        </div>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="notif-content">
+                            <span class="notif-text">Após o envio do palpite, não é permitido a alteração do placar escolhido.</span>
+                        </div>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="notif-content">
+                            <span class="notif-text">Revise as regras do bolão para que não haja nenhuma dúvida.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Bolão Copa 2026</h4>
+                    <p>O melhor sistema de bolão para a Copa do Mundo</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#regras">Regras</a></li>
+                        <li><a href="#ajuda">Ajuda</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Criado por:</h4>
+                    <p>gustavo.rossi2612@gmail.com</p> </br>
+                    <div class="social-links">
+                        <a href="https://wa.me/5585992376342"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.linkedin.com/in/gustavo-rossi-de-moraes-6a0755242/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/GustavoR-Dev"><i class="fab fa-github"></i></a>
+                        <a href="mailto:gustavo.rossi2612@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bolão Copa do Mundo. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

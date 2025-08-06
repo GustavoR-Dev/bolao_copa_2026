@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazer Palpites - Bolão Copa 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="palpites.css"> <!-- CSS específico para esta página -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <h1>Bolão Copa 2026</h1>
+                </div>
+                <nav class="nav-desktop">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="jogos.html">Meus Palpites</a></li>
+                        <li><a href="tabela.html">Tabela</a></li>
+                        <li id="adminLinkContainer" style="display: none;"><a href="todosJogos.html">Palpites</a></li>
+                    </ul>
+                </nav>
+                <!-- ÁREA DO USUÁRIO MODIFICADA -->
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="user-name" id="userName">Carregando...</span>
+                    <div class="user-dropdown">
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile">
+        <ul>
+            <li><a href="index.html" class="active">Início</a></li>
+            <li><a href="jogos.html">Meus Palpites</a></li>
+            <li><a href="tabela.html">Tabela</a></li>
+            <li id="adminLinkContainer" style="display: none;"><a href="todosJogos.html">Palpites</a></li>
+            <li><a href="#" id="logoutBtnMobile"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <div class="page-title">
+                    <h2><i class="fas fa-edit"></i> Fazer Palpites</h2>
+                    <p>Preencha os placares para todos os 72 jogos da fase de grupos.</p>
+                </div>
+                <div class="page-actions">
+                    <div class="progress-info">
+                        <span class="palpites-count" id="palpitesCount">0/72 palpites</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Container onde os jogos serão inseridos pelo JavaScript -->
+            <div id="gamesContainer" class="games-grid-container">
+                <!-- Exemplo de como um jogo será renderizado -->
+                <!-- <div class="game-card" data-game-id="1">
+                    <div class="game-info">
+                        <div class="game-date">11/06 - 16:00</div>
+                        <div class="teams">
+                            <div class="team"><span>México</span></div>
+                            <div class="score-inputs">
+                                <input type="number" min="0" class="score-input" data-team="home">
+                                <span class="vs">X</span>
+                                <input type="number" min="0" class="score-input" data-team="away">
+                            </div>
+                            <div class="team"><span>Canadá</span></div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Botão de Publicação Fixo -->
+            <div class="publish-section">
+                <div class="publish-info">
+                    <p class="publish-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Atenção: Após publicar, você <strong>não poderá</strong> mais editar seus palpites!
+                    </p>
+                </div>
+                <button class="btn-publish-main" id="publishBtn" disabled>
+                    <i class="fas fa-paper-plane"></i>
+                    Publicar Meus Palpites
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Bolão Copa 2026</h4>
+                    <p>O melhor sistema de bolão para a Copa do Mundo</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#regras">Regras</a></li>
+                        <li><a href="#ajuda">Ajuda</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Criado por:</h4>
+                    <p>gustavo.rossi2612@gmail.com</p> </br>
+                    <div class="social-links">
+                        <a href="https://wa.me/5585992376342"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.linkedin.com/in/gustavo-rossi-de-moraes-6a0755242/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/GustavoR-Dev"><i class="fab fa-github"></i></a>
+                        <a href="mailto:gustavo.rossi2612@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bolão Copa do Mundo. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="palpites.js"></script>
+</body>
+</html>

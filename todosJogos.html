@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Todos os Palpites - Admin</title>
+        <link rel="stylesheet" href="jogos.css"> 
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            /* Estilos específicos para esta página */
+            .game-card-admin .card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            .game-title { font-weight: bold; }
+            .game-result { font-size: 0.9rem; color: var(--primary-color); }
+            
+            .filter-buttons {
+                display: flex;
+                gap: 0.5rem;
+                margin-top: 10px;
+                width: 100%; /* Ocupa a linha toda em telas pequenas */
+            }
+            .filter-btn {
+                background-color: #e9ecef;
+                border: 1px solid #ced4da;
+                border-radius: 20px;
+                padding: 0.25rem 0.75rem;
+                font-size: 0.8rem;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            .filter-btn:hover { background-color: #ced4da; }
+            .filter-btn.active {
+                background-color: var(--primary-color);
+                color: white;
+                border-color: var(--primary-color);
+            }
+
+            .palpite-list { list-style-type: none; padding-left: 0; margin-top: 10px; }
+            .palpite-item {
+                background-color: #f8f9fa;
+                padding: 8px 12px;
+                border-radius: 6px;
+                margin-bottom: 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-left: 4px solid transparent;
+            }
+            /* Cores baseadas na pontuação */
+            .palpite-item[data-points="100"] { border-left-color: #28a745; }
+            .palpite-item[data-points="50"] { border-left-color: #ffc107; }
+            .palpite-item[data-points="0"] { border-left-color: #dc3545; }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-futbol"></i>
+                        <h1>Bolão Copa 2026</h1>
+                    </div>
+                    <nav class="nav-desktop">
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="jogos.html">Meus Palpites</a></li>
+                            <li><a href="tabela.html">Tabela</a></li>
+                            <li id="adminLinkContainer" style="display: none;"><a href="todosJogos.html">Palpites</a></li>
+                        </ul>
+                    </nav>
+                    <!-- ÁREA DO USUÁRIO MODIFICADA -->
+                    <div class="user-info" id="userInfo">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="user-name" id="userName">Carregando...</span>
+                        <div class="user-dropdown">
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mobile Navigation -->
+        <nav class="nav-mobile">
+            <ul>
+                <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="jogos.html">Meus Palpites</a></li>
+                <li><a href="tabela.html">Tabela</a></li>
+                <li id="adminLinkContainer" style="display: none;"><a href="todosJogos.html">Palpites</a></li>
+                <li><a href="#" id="logoutBtnMobile"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+            </ul>
+        </nav>
+
+        <main class="main">
+            <div class="container">
+                <div class="page-header">
+                    <h2><i class="fas fa-users"></i> Palpites de Todos os Usuários</h2>
+                    <p>Visualize e filtre todos os palpites feitos para cada jogo.</p>
+                </div>
+                <div id="allResultsContainer" class="results-container">
+                    <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Carregando...</div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Bolão Copa 2026</h4>
+                        <p>O melhor sistema de bolão para a Copa do Mundo</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><a href="#regras">Regras</a></li>
+                            <li><a href="#ajuda">Ajuda</a></li>
+                            <li><a href="#contato">Contato</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Criado por:</h4>
+                        <p>gustavo.rossi2612@gmail.com</p> </br>
+                        <div class="social-links">
+                            <a href="https://wa.me/5585992376342"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.linkedin.com/in/gustavo-rossi-de-moraes-6a0755242/"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/GustavoR-Dev"><i class="fab fa-github"></i></a>
+                            <a href="mailto:gustavo.rossi2612@gmail.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Bolão Copa do Mundo. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="script.js"></script> 
+        <script src="todosJogos.js"></script>
+    </body>
+</html>

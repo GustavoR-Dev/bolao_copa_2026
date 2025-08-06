@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Classificação - Bolão Copa 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tabela.css"> <!-- CSS específico -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <h1>Bolão Copa 2026</h1>
+                </div>
+                <nav class="nav-desktop">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="jogos.html">Meus Palpites</a></li>
+                        <li><a href="tabela.html">Tabela</a></li>
+                        <li id="adminLinkContainer" style="display: none;"><a href="todosJogos.html">Palpites</a></li>
+                    </ul>
+                </nav>
+                <!-- ÁREA DO USUÁRIO MODIFICADA -->
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="user-name" id="userName">Carregando...</span>
+                    <div class="user-dropdown">
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile">
+        <ul>
+            <li><a href="index.html" class="active">Início</a></li>
+            <li><a href="jogos.html">Meus Palpites</a></li>
+            <li><a href="tabela.html">Tabela</a></li>
+            <li id="adminLinkContainer" style="display: none;"><a href="todosJogos.html">Palpites</a></li>
+            <li><a href="#" id="logoutBtnMobile"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+        </ul>
+    </nav>
+
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <div class="page-title">
+                    <h2><i class="fas fa-trophy"></i> Tabela de Classificação</h2>
+                    <p>Veja o ranking completo de todos os participantes do bolão.</p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th class="col-pos">#</th>
+                            <th class="col-user">Usuário</th>
+                            <th class="col-pts">Pontos</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rankingBody">
+                        <!-- Linhas da tabela serão inseridas aqui pelo JavaScript -->
+                        <!-- Exemplo de estado de carregamento -->
+                        <tr>
+                            <td colspan="3" class="loading-state">
+                                <i class="fas fa-spinner fa-spin"></i> Carregando ranking...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Bolão Copa 2026</h4>
+                    <p>O melhor sistema de bolão para a Copa do Mundo</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#regras">Regras</a></li>
+                        <li><a href="#ajuda">Ajuda</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Criado por:</h4>
+                    <p>gustavo.rossi2612@gmail.com</p> </br>
+                    <div class="social-links">
+                        <a href="https://wa.me/5585992376342"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.linkedin.com/in/gustavo-rossi-de-moraes-6a0755242/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/GustavoR-Dev"><i class="fab fa-github"></i></a>
+                        <a href="mailto:gustavo.rossi2612@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bolão Copa do Mundo. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> 
+    <script src="tabela.js"></script>
+</body>
+</html>
