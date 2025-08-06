@@ -1,0 +1,106 @@
+/* Estilos específicos para a página de login */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364 );
+    font-family: 'Poppins', sans-serif;
+}
+.login-container {
+    background-color: #fff;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+.form-container {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    width: 200%;
+}
+.form-section {
+    width: 50%;
+    padding: 0 10px;
+}
+.login-container.register-mode .form-container {
+    transform: translateX(-50%);
+}
+.logo {
+    margin-bottom: 1.5rem;
+}
+.logo i {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+.input-field {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+.input-field:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+.btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn-submit:hover {
+    background: #103a1a;
+    color: #fff;
+}
+.toggle-link {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+.toggle-link a {
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+#notification {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    display: none;
+    font-weight: 500;
+}
+#notification.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+#notification.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
