@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Novas Funções para Meus Palpites Recentes ---
+    // --- Funções para Meus Palpites Recentes ---
     function getIconForPoints(points) {
         if (points === 100) return 'fa-check'; // Acertou em cheio
         if (points === 50) return 'fa-star-half-alt'; // Acertou o resultado (vitória/empate/derrota)
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 htmlContent += `
                     <div class="palpite-item ${palpiteClass}">
                         <div class="jogo-resumo">
-                            <span class="times">${bet.time_casa} ${bet.placar_casa ?? '-'} x ${bet.placar_visitante ?? '-'} ${bet.time_visitante}</span>
+                            <span class="times">${bet.time_casa} ${bet.resultado_casa ?? '-'} x ${bet.resultado_visitante ?? '-'} ${bet.time_visitante}</span>
                             <span class="data">${bet.data_formatada.split(' ')[0]}</span>
                         </div>
                         <div class="palpite-info">
@@ -165,9 +165,96 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Novas Funções para Estatísticas do Usuário ---
+    function calculateUserStats(dados) {
+        // Filtra apenas jogos com resultado oficial (finalizados)
+        const completedGames = dados.filter(game => 
+            game.resultado_casa !== null && 
+            game.resultado_visitante !== null &&
+            game.palpite_casa !== null &&
+            game.palpite_visitante !== null
+        );
+
+        if (completedGames.length === 0) {
+            return {
+                taxaAcerto: 0,
+                sequencia: 0,
+                placaresExatos: 0,
+                pontosHoje: 0
+            };
+        }
+
+        // 1. Taxa de Acerto (jogos com pontos > 0)
+        const acertos = completedGames.filter(game => game.pontos_obtidos > 0).length;
+        const taxaAcerto = Math.round((acertos / completedGames.length) * 100);
+
+        // 2. Sequência atual de acertos/erros
+        let sequencia = 0;
+        let ultimoResultado = null;
+        
+        // Ordena por data (mais recente primeiro) para calcular sequência atual
+        const gamesSorted = [...completedGames].sort((a, b) => new Date(b.data_jogo) - new Date(a.data_jogo));
+        
+        for (const game of gamesSorted) {
+            const acertou = game.pontos_obtidos > 0;
+            
+            if (ultimoResultado === null) {
+                ultimoResultado = acertou;
+                sequencia = 1;
+            } else if (ultimoResultado === acertou) {
+                sequencia++;
+            } else {
+                break; // Quebrou a sequência
+            }
+        }
+
+        // 3. Placares Exatos (100 pontos)
+        const placaresExatos = completedGames.filter(game => game.pontos_obtidos === 100).length;
+
+        // 4. Pontos de hoje
+        const hoje = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+        const jogosHoje = completedGames.filter(game => {
+            const dataJogo = new Date(game.data_jogo).toISOString().split('T')[0];
+            return dataJogo === hoje;
+        });
+        const pontosHoje = jogosHoje.reduce((total, game) => total + (game.pontos_obtidos || 0), 0);
+
+        return {
+            taxaAcerto,
+            sequencia: ultimoResultado ? `${sequencia} ${ultimoResultado ? '' : ''}` : '0',
+            placaresExatos,
+            pontosHoje
+        };
+    }
+
+    function updateUserStats(stats) {
+        document.getElementById('taxa-acerto').textContent = `${stats.taxaAcerto}%`;
+        document.getElementById('sequencia').textContent = stats.sequencia;
+        document.getElementById('placares-exatos').textContent = stats.placaresExatos;
+        document.getElementById('pontos-hoje').textContent = stats.pontosHoje > 0 ? `+${stats.pontosHoje}` : '0';
+    }
+
+    async function loadUserStats() {
+        try {
+            const response = await fetch(`${API_URL_JOGOS}?action=get_meus_resultados&usuario_id=${user.id}`);
+            const result = await response.json();
+
+            if (result.status === 'success' && result.dados) {
+                const stats = calculateUserStats(result.dados);
+                updateUserStats(stats);
+            } else {
+                // Em caso de erro, mantém os valores padrão
+                console.error("Erro ao carregar dados para estatísticas:", result.message);
+            }
+
+        } catch (error) {
+            console.error("Erro ao carregar estatísticas do usuário:", error);
+            // Em caso de erro, mantém os valores padrão
+        }
+    }
+
     // --- Inicialização ---
     loadRankingSummary();
     loadMyRecentBets();
+    loadUserStats();
 });
-
-

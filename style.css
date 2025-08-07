@@ -695,7 +695,6 @@ body {
     gap: var(--spacing-md);
     padding: var(--spacing-md);
     border-radius: var(--border-radius-md);
-    background: var(--gray-50);
     transition: var(--transition-normal);
 }
 

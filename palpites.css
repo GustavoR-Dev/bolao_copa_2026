@@ -800,7 +800,7 @@
 }
 
 .btn-publish-main:hover:not(:disabled) {
-    background-color: var(--primary-hover-color);
+    background: var(--primary-dark);
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
