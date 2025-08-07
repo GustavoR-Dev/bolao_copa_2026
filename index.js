@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const rankingContainer = document.getElementById('ranking-list-container');
     const myBetsContainer = document.getElementById('my-bets-list-container');
+    const todayGamesContainer = document.getElementById('jogos-hoje-container');
     const API_URL_RANKING = 'api/tabela.php';
     const API_URL_JOGOS = 'api/jogos.php';
 
@@ -253,8 +254,86 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Funções para Jogos de Hoje ---
+    async function loadTodayGames() {
+        try {
+            // Busca os jogos de hoje
+            const gamesResponse = await fetch(`${API_URL_JOGOS}?action=get_jogos_hoje`);
+            const gamesResult = await gamesResponse.json();
+
+            if (gamesResult.status !== 'success' || !gamesResult.jogos) {
+                todayGamesContainer.innerHTML = '<p class="error-state">Não foi possível carregar os jogos de hoje.</p>';
+                return;
+            }
+
+            if (gamesResult.jogos.length === 0) {
+                todayGamesContainer.innerHTML = '<p>Nenhum jogo agendado para hoje.</p>';
+                return;
+            }
+
+            // Busca os palpites do usuário para todos os jogos
+            const betsResponse = await fetch(`${API_URL_JOGOS}?action=get_meus_resultados&usuario_id=${user.id}`);
+            const betsResult = await betsResponse.json();
+
+            // Cria um mapa de palpites por jogo_id para facilitar a busca
+            const userBets = {};
+            if (betsResult.status === 'success' && betsResult.dados) {
+                betsResult.dados.forEach(bet => {
+                    userBets[bet.id] = {
+                        palpite_casa: bet.palpite_casa,
+                        palpite_visitante: bet.palpite_visitante
+                    };
+                });
+            }
+
+            let htmlContent = '';
+            gamesResult.jogos.forEach(jogo => {
+                const userBet = userBets[jogo.id];
+                let statusText = 'Palpite: Pendente';
+                let statusClass = 'pendente';
+
+                if (userBet && userBet.palpite_casa !== null && userBet.palpite_visitante !== null) {
+                    statusText = `Palpite: ${userBet.palpite_casa} x ${userBet.palpite_visitante}`;
+                    statusClass = 'palpitado';
+                }
+
+                htmlContent += `
+                    <div class="jogo-card">
+                        <div class="jogo-info">
+                            <div class="jogo-data">
+                                <span class="data">${jogo.data_formatada.split(' ')[0]}</span>
+                                <span class="horario">${jogo.data_formatada.split(' ')[1]}</span>
+                            </div>
+                            <div class="jogo-times">
+                                <div class="time">
+                                    <img src="" alt="" class="bandeira"> <!-- Adicione a URL da bandeira aqui -->
+                                    <span>${jogo.time_casa}</span>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="time">
+                                    <img src="" alt="" class="bandeira"> <!-- Adicione a URL da bandeira aqui -->
+                                    <span>${jogo.time_visitante}</span>
+                                </div>
+                            </div>
+                            <div class="jogo-status">
+                                <span class="status ${statusClass}">${statusText}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            todayGamesContainer.innerHTML = htmlContent;
+
+        } catch (error) {
+            console.error("Erro ao carregar jogos de hoje:", error);
+            todayGamesContainer.innerHTML = '<p class="error-state">Erro de conexão ao buscar os jogos de hoje.</p>';
+        }
+    }
+
     // --- Inicialização ---
     loadRankingSummary();
     loadMyRecentBets();
     loadUserStats();
+    loadTodayGames(); 
 });

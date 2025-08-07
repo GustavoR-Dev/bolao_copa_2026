@@ -83,7 +83,7 @@ elseif ($action == 'salvar_palpites') {
     $result = $check_stmt->get_result()->fetch_assoc();
 
     if ($result && $result['palpites_enviados'] == 1) {
-        http_response_code(403 );
+        http_response_code(403  );
         echo json_encode(['status' => 'error', 'message' => 'Ação bloqueada: Seus palpites já foram publicados anteriormente.']);
         exit();
     }
