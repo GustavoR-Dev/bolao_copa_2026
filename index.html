@@ -163,58 +163,10 @@
                         <h3>Tabela Geral</h3>
                         <a href="tabela.html" class="ver-todos">Ver completo</a>
                     </div>
-                    <div class="ranking-list">
-                        <div class="ranking-item destaque">
-                            <div class="posicao">1º</div>
-                            <div class="usuario">
-                                <div class="avatar">
-                                    <i class="fas fa-crown"></i>
-                                </div>
-                                <div class="info">
-                                    <span class="nome">***</span>
-                                    <span class="acertos">** acertos</span>
-                                </div>
-                            </div>
-                            <div class="pontos">***</div>
-                        </div>
-                        <div class="ranking-item">
-                            <div class="posicao">2º</div>
-                            <div class="usuario">
-                                <div class="avatar">
-                                    <i class="fas fa-medal"></i>
-                                </div>
-                                <div class="info">
-                                    <span class="nome">***</span>
-                                    <span class="acertos">** acertos</span>
-                                </div>
-                            </div>
-                            <div class="pontos">***</div>
-                        </div>
-                        <div class="ranking-item">
-                            <div class="posicao">3º</div>
-                            <div class="usuario">
-                                <div class="avatar">
-                                    <i class="fas fa-award"></i>
-                                </div>
-                                <div class="info">
-                                    <span class="nome">***</span>
-                                    <span class="acertos">** acertos</span>
-                                </div>
-                            </div>
-                            <div class="pontos">***</div>
-                        </div>
-                        <div class="ranking-item atual">
-                            <div class="posicao">*</div>
-                            <div class="usuario">
-                                <div class="avatar">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="info">
-                                    <span class="nome">Você</span>
-                                    <span class="acertos">** acertos</span>
-                                </div>
-                            </div>
-                            <div class="pontos">***</div>
+                    <div class="ranking-list" id="ranking-list-container">
+                        <!-- O conteúdo do ranking será inserido aqui pelo index.js -->
+                        <div class="loading-state" style="text-align: center; padding: 20px;">
+                            <i class="fas fa-spinner fa-spin"></i> Carregando ranking...
                         </div>
                     </div>
                 </section>
@@ -379,5 +331,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="index.js"></script> <!-- NOVO SCRIPT ADICIONADO -->
 </body>
 </html>

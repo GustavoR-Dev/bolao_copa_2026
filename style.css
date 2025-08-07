@@ -1115,3 +1115,17 @@ input:focus {
 .nav-mobile.active {
     transform: translateY(0);
 }
+
+.ranking-separator {
+    text-align: center;
+    color: #888;
+    font-weight: 600;
+    margin: 8px 0;
+    letter-spacing: 2px;
+}
+
+.loading-state, .error-state {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+}
