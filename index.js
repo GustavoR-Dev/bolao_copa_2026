@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rankingContainer = document.getElementById('ranking-list-container');
     const myBetsContainer = document.getElementById('my-bets-list-container');
     const todayGamesContainer = document.getElementById('jogos-hoje-container');
+    const participantesElement = document.getElementById('total-participantes');
     const API_URL_RANKING = 'api/tabela.php';
     const API_URL_JOGOS = 'api/jogos.php';
 
@@ -222,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return {
             taxaAcerto,
-            sequencia: ultimoResultado ? `${sequencia} ${ultimoResultado ? '' : ''}` : '0',
+            sequencia: ultimoResultado ? `${sequencia} ${ultimoResultado ? 'acertos' : 'erros'}` : '0',
             placaresExatos,
             pontosHoje
         };
@@ -331,9 +332,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Função para carregar número de participantes ---
+    async function loadParticipantesCount() {
+        try {
+            const response = await fetch(`${API_URL_RANKING}?action=get_participantes_count`);
+            const result = await response.json();
+
+            if (result.status === 'success' && participantesElement) {
+                participantesElement.textContent = result.total_participantes;
+            } else {
+                console.error("Erro ao carregar número de participantes:", result.message);
+                if (participantesElement) {
+                    participantesElement.textContent = "0";
+                }
+            }
+
+        } catch (error) {
+            console.error("Erro ao carregar número de participantes:", error);
+            if (participantesElement) {
+                participantesElement.textContent = "0";
+            }
+        }
+    }
+
     // --- Inicialização ---
     loadRankingSummary();
     loadMyRecentBets();
     loadUserStats();
     loadTodayGames(); 
+    loadParticipantesCount(); 
 });
