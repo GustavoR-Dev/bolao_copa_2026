@@ -29,39 +29,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Lidar com o envio do formulário de LOGIN
-    loginForm.addEventListener('submit', async (e) => {
+    loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
 
         const data = {
-            action: 'login',
+            action: "login",
             email: email,
             senha: password
         };
 
         try {
             const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
 
             const result = await response.json();
 
-            if (result.status === 'success') {
-                // Armazena os dados do usuário no localStorage para usar em outras páginas
-                localStorage.setItem('bolaoUser', JSON.stringify(result.user));
-                showNotification(result.message, 'success');
-                // Redireciona para a página principal após um curto intervalo
+            if (result.status === "success") {
+                localStorage.setItem("bolaoUser", JSON.stringify(result.user));
+                showNotification(result.message, "success");
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = "regras.html"; // Redireciona para regras.html
                 }, 1000);
             } else {
-                showNotification(result.message, 'error');
+                showNotification(result.message, "error");
             }
         } catch (error) {
-            showNotification('Erro de conexão. Tente novamente.', 'error');
+            showNotification("Erro de conexão. Tente novamente.", "error");
         }
     });
 
