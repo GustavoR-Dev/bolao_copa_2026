@@ -63,11 +63,11 @@
                     <p>Faça seus palpites e dispute com seus amigos!</p>
                     <div class="hero-stats">
                         <div class="stat">
-                            <span class="stat-number">156</span>
+                            <span class="stat-number">150</span>
                             <span class="stat-label">Participantes</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">48</span>
+                            <span class="stat-number">72</span>
                             <span class="stat-label">Jogos</span>
                         </div>
                         <div class="stat">
@@ -164,7 +164,6 @@
                         <a href="tabela.html" class="ver-todos">Ver completo</a>
                     </div>
                     <div class="ranking-list" id="ranking-list-container">
-                        <!-- O conteúdo do ranking será inserido aqui pelo index.js -->
                         <div class="loading-state" style="text-align: center; padding: 20px;">
                             <i class="fas fa-spinner fa-spin"></i> Carregando ranking...
                         </div>
@@ -177,45 +176,9 @@
                         <h3>Meus Palpites</h3>
                         <a href="jogos.html" class="ver-todos">Ver todos</a>
                     </div>
-                    <div class="palpites-list">
-                        <div class="palpite-item acertou">
-                            <div class="jogo-resumo">
-                                <span class="times">*** *x* ***</span>
-                                <span class="data">**/**</span>
-                            </div>
-                            <div class="palpite-info">
-                                <span class="palpite">Seu palpite: *x*</span>
-                                <span class="resultado acerto">
-                                    <i class="fas fa-check"></i>
-                                    +150 pts
-                                </span>
-                            </div>
-                        </div>
-                        <div class="palpite-item errou">
-                            <div class="jogo-resumo">
-                                <span class="times">*** *x* ***</span>
-                                <span class="data">**/**</span>
-                            </div>
-                            <div class="palpite-info">
-                                <span class="palpite">Seu palpite: *x*</span>
-                                <span class="resultado erro">
-                                    <i class="fas fa-times"></i>
-                                    0 pts
-                                </span>
-                            </div>
-                        </div>
-                        <div class="palpite-item acertou-parcial">
-                            <div class="jogo-resumo">
-                                <span class="times">*** *x* ***</span>
-                                <span class="data">10/06</span>
-                            </div>
-                            <div class="palpite-info">
-                                <span class="palpite">Seu palpite: *x*</span>
-                                <span class="resultado parcial">
-                                    <i class="fas fa-star-half-alt"></i>
-                                    +50 pts
-                                </span>
-                            </div>
+                    <div class="palpites-list" id="my-bets-list-container">
+                        <div class="loading-state" style="text-align: center; padding: 20px;">
+                            <i class="fas fa-spinner fa-spin"></i> Carregando seus palpites... 
                         </div>
                     </div>
                 </section>
@@ -331,6 +294,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="index.js"></script> <!-- NOVO SCRIPT ADICIONADO -->
+    <script src="index.js"></script>
 </body>
 </html>
