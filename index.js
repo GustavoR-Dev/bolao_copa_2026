@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return {
             taxaAcerto,
-            sequencia: ultimoResultado ? `${sequencia} ${ultimoResultado ? 'acertos' : 'erros'}` : '0',
+            sequencia: ultimoResultado ? `${sequencia} ${ultimoResultado ? '' : ''}` : '0',
             placaresExatos,
             pontosHoje
         };

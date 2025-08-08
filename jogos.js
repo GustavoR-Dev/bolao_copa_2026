@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. FUNÇÕES PRINCIPAIS ---
 
-    // Função para renderizar os dados na tela
+    // Função para renderizar os dados na tela com seções organizadas
     function renderResults(data) {
         resultsContainer.innerHTML = ''; // Limpa o container
         if (!data || data.length === 0) {
@@ -38,47 +38,107 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Separar jogos por categoria
+        const hoje = new Date().toISOString().split('T')[0];
+        const jogosHoje = [];
+        const jogosFuturos = [];
+        const jogosPassados = [];
+
         data.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'result-card';
-            card.dataset.gameId = item.id;
-
-            let pointsClass = 'pending';
-            if (item.pontos_obtidos === 100) pointsClass = 'exact';
-            else if (item.pontos_obtidos === 50) pointsClass = 'partial';
-            else if (item.pontos_obtidos === 0) pointsClass = 'zero';
-
-            card.innerHTML = `
-                <div class="card-header">
-                    <span>${item.data_formatada} | Grupo ${item.grupo}</span>
-                    ${user.is_admin ? `<button class="btn-edit-game" title="Editar Jogo"><i class="fas fa-pencil-alt"></i></button>` : ''}
-                </div>
-                <div class="card-body">
-                    <div class="teams-line">
-                        <span class="team-name home">${item.time_casa}</span>
-                        <span class="vs-separator">X</span>
-                        <span class="team-name away">${item.time_visitante}</span>
-                    </div>
-                    <div class="scores">
-                        <div class="user-guess">
-                            <span class="label">Seu Palpite</span>
-                            <span class="score">${item.palpite_casa ?? '-'} x ${item.palpite_visitante ?? '-'}</span>
-                        </div>
-                        <div class="official-result" id="result-${item.id}">
-                            <span class="label">Resultado Oficial</span>
-                            ${renderOfficialResult(item)}
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="points-badge ${pointsClass}">
-                        <i class="fas ${getIconForPoints(item.pontos_obtidos)}"></i>
-                        <span>${getLabelForPoints(item.pontos_obtidos)}</span>
-                    </div>
-                </div>
-            `;
-            resultsContainer.appendChild(card);
+            const dataJogo = new Date(item.data_jogo).toISOString().split('T')[0];
+            
+            if (dataJogo === hoje) {
+                jogosHoje.push(item);
+            } else if (dataJogo > hoje) {
+                jogosFuturos.push(item);
+            } else {
+                jogosPassados.push(item);
+            }
         });
+
+        // Ordenar jogos futuros (mais próximos primeiro)
+        jogosFuturos.sort((a, b) => new Date(a.data_jogo) - new Date(b.data_jogo));
+        
+        // Ordenar jogos passados (mais recentes primeiro)
+        jogosPassados.sort((a, b) => new Date(b.data_jogo) - new Date(a.data_jogo));
+
+        // Renderizar seções
+        if (jogosHoje.length > 0) {
+            const sectionTitle = document.createElement('h3');
+            sectionTitle.className = 'section-title';
+            sectionTitle.innerHTML = '<i class="fas fa-calendar-day"></i> Jogos de Hoje';
+            resultsContainer.appendChild(sectionTitle);
+            
+            jogosHoje.forEach(item => {
+                resultsContainer.appendChild(createGameCard(item));
+            });
+        }
+
+        if (jogosFuturos.length > 0) {
+            const sectionTitle = document.createElement('h3');
+            sectionTitle.className = 'section-title';
+            sectionTitle.innerHTML = '<i class="fas fa-calendar-plus"></i> Próximos Jogos';
+            resultsContainer.appendChild(sectionTitle);
+            
+            jogosFuturos.forEach(item => {
+                resultsContainer.appendChild(createGameCard(item));
+            });
+        }
+
+        if (jogosPassados.length > 0) {
+            const sectionTitle = document.createElement('h3');
+            sectionTitle.className = 'section-title';
+            sectionTitle.innerHTML = '<i class="fas fa-history"></i> Jogos Anteriores';
+            resultsContainer.appendChild(sectionTitle);
+            
+            jogosPassados.forEach(item => {
+                resultsContainer.appendChild(createGameCard(item));
+            });
+        }
+    }
+
+    // Função para criar um card de jogo
+    function createGameCard(item) {
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        card.dataset.gameId = item.id;
+
+        let pointsClass = 'pending';
+        if (item.pontos_obtidos === 100) pointsClass = 'exact';
+        else if (item.pontos_obtidos === 50) pointsClass = 'partial';
+        else if (item.pontos_obtidos === 0) pointsClass = 'zero';
+
+        card.innerHTML = `
+            <div class="card-header">
+                <span>${item.data_formatada} | Grupo ${item.grupo}</span>
+                ${user.is_admin ? `<button class="btn-edit-game" title="Editar Jogo"><i class="fas fa-pencil-alt"></i></button>` : ''}
+            </div>
+            <div class="card-body">
+                <div class="teams-line">
+                    <span class="team-name home">${item.time_casa}</span>
+                    <span class="vs-separator">X</span>
+                    <span class="team-name away">${item.time_visitante}</span>
+                </div>
+                <div class="scores">
+                    <div class="user-guess">
+                        <span class="label">Seu Palpite</span>
+                        <span class="score">${item.palpite_casa ?? '-'} x ${item.palpite_visitante ?? '-'}</span>
+                    </div>
+                    <div class="official-result" id="result-${item.id}">
+                        <span class="label">Resultado Oficial</span>
+                        ${renderOfficialResult(item)}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="points-badge ${pointsClass}">
+                    <i class="fas ${getIconForPoints(item.pontos_obtidos)}"></i>
+                    <span>${getLabelForPoints(item.pontos_obtidos)}</span>
+                </div>
+            </div>
+        `;
+        
+        return card;
     }
 
     // Função para renderizar a seção de resultado oficial (diferente para admin)

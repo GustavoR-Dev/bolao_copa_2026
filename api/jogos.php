@@ -37,7 +37,52 @@ if ($action == 'get_jogos') {
         }
     }
     
-    echo json_encode(['status' => 'success', 'jogos' => $jogos]);
+    echo json_encode(["status" => "success", "jogos" => $jogos]);
+}
+
+// --- NOVA AÇÃO BUSCAR TODOS OS JOGOS ORDENADOS ---
+elseif ($action == 'get_all_games_sorted') {
+    $hoje = date('Y-m-d');
+
+    $sql_hoje = "SELECT id, grupo, time_casa, time_visitante, data_jogo, placar_casa, placar_visitante FROM jogos WHERE DATE(data_jogo) = ? ORDER BY data_jogo";
+    $stmt_hoje = $conn->prepare($sql_hoje);
+    $stmt_hoje->bind_param("s", $hoje);
+    $stmt_hoje->execute();
+    $result_hoje = $stmt_hoje->get_result();
+    $jogos_hoje = [];
+    while($row = $result_hoje->fetch_assoc()) {
+        $row['data_formatada'] = (new DateTime($row['data_jogo']))->format('d/m H:i');
+        $jogos_hoje[] = $row;
+    }
+
+    $sql_futuros = "SELECT id, grupo, time_casa, time_visitante, data_jogo, placar_casa, placar_visitante FROM jogos WHERE DATE(data_jogo) > ? ORDER BY data_jogo";
+    $stmt_futuros = $conn->prepare($sql_futuros);
+    $stmt_futuros->bind_param("s", $hoje);
+    $stmt_futuros->execute();
+    $result_futuros = $stmt_futuros->get_result();
+    $jogos_futuros = [];
+    while($row = $result_futuros->fetch_assoc()) {
+        $row['data_formatada'] = (new DateTime($row['data_jogo']))->format('d/m H:i');
+        $jogos_futuros[] = $row;
+    }
+
+    $sql_passados = "SELECT id, grupo, time_casa, time_visitante, data_jogo, placar_casa, placar_visitante FROM jogos WHERE DATE(data_jogo) < ? ORDER BY data_jogo DESC";
+    $stmt_passados = $conn->prepare($sql_passados);
+    $stmt_passados->bind_param("s", $hoje);
+    $stmt_passados->execute();
+    $result_passados = $stmt_passados->get_result();
+    $jogos_passados = [];
+    while($row = $result_passados->fetch_assoc()) {
+        $row['data_formatada'] = (new DateTime($row['data_jogo']))->format('d/m H:i');
+        $jogos_passados[] = $row;
+    }
+
+    echo json_encode([
+        'status' => 'success',
+        'jogos_hoje' => $jogos_hoje,
+        'jogos_futuros' => $jogos_futuros,
+        'jogos_passados' => $jogos_passados
+    ]);
 }
 
 // --- NOVA AÇÃO BUSCAR JOGOS DE HOJE ---
