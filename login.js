@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
 
             if (result.status === 'success') {
-                showNotification(result.message + ' Faça o login para continuar.', 'success');
+                showNotification(result.message + '', 'success');
                 registerForm.reset();
                 loginContainer.classList.remove('register-mode');
             } else {

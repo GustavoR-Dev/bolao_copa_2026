@@ -45,7 +45,7 @@ if ($action == 'register') {
         $stmt_insert->bind_param("sssss", $nome, $email, $telefone, $senha, $pin);
 
         if ($stmt_insert->execute()) {
-            echo json_encode(['status' => 'success', 'message' => 'Cadastro realizado com sucesso! Seu PIN de redefinição: ' . $pin]);
+            echo json_encode(['status' => 'success', 'message' => 'Cadastro realizado com sucesso!']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Erro ao realizar o cadastro.']);
         }
