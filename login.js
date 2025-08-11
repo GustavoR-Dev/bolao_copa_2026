@@ -68,12 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const name = document.getElementById('registerName').value;
         const email = document.getElementById('registerEmail').value;
+        const phone = document.getElementById('registerPhone').value;
         const password = document.getElementById('registerPassword').value;
 
         const data = {
             action: 'register',
             nome: name,
             email: email,
+            telefone: phone,
             senha: password
         };
 
@@ -88,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (result.status === 'success') {
                 showNotification(result.message + ' Faça o login para continuar.', 'success');
-                // Limpa o formulário e volta para a tela de login
                 registerForm.reset();
                 loginContainer.classList.remove('register-mode');
             } else {

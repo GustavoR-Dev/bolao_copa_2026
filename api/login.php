@@ -18,18 +18,16 @@ $action = $input['action'];
 
 // --- AÇÃO DE REGISTRO ---
 if ($action == 'register') {
-    // Validação básica dos campos
-    if (empty($input['nome']) || empty($input['email']) || empty($input['senha'])) {
+    if (empty($input['nome']) || empty($input['email']) || empty($input['telefone']) || empty($input['senha'])) {
         echo json_encode(['status' => 'error', 'message' => 'Por favor, preencha todos os campos.']);
         exit();
     }
 
     $nome = $conn->real_escape_string($input['nome']);
     $email = $conn->real_escape_string($input['email']);
-    // Criptografa a senha para armazenamento seguro
+    $telefone = $conn->real_escape_string($input['telefone']);
     $senha = password_hash($conn->real_escape_string($input['senha']), PASSWORD_BCRYPT);
 
-    // Verifica se o e-mail já está cadastrado
     $sql_check = "SELECT id FROM usuarios WHERE email = ?";
     $stmt_check = $conn->prepare($sql_check);
     $stmt_check->bind_param("s", $email);
@@ -39,10 +37,9 @@ if ($action == 'register') {
     if ($result_check->num_rows > 0) {
         echo json_encode(['status' => 'error', 'message' => 'Este e-mail já está em uso.']);
     } else {
-        // Insere o novo usuário no banco de dados
-        $sql_insert = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
+        $sql_insert = "INSERT INTO usuarios (nome, email, telefone, senha, pagamento) VALUES (?, ?, ?, ?, 0)";
         $stmt_insert = $conn->prepare($sql_insert);
-        $stmt_insert->bind_param("sss", $nome, $email, $senha);
+        $stmt_insert->bind_param("ssss", $nome, $email, $telefone, $senha);
 
         if ($stmt_insert->execute()) {
             echo json_encode(['status' => 'success', 'message' => 'Cadastro realizado com sucesso!']);
@@ -63,7 +60,7 @@ elseif ($action == 'login') {
     $senha_input = $input['senha'];
 
     // Busca o usuário pelo e-mail
-    $sql = "SELECT id, nome, email, senha, is_admin FROM usuarios WHERE email = ?";
+    $sql = "SELECT id, nome, email, senha, is_admin, pagamento FROM usuarios WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -71,8 +68,15 @@ elseif ($action == 'login') {
 
     if ($result->num_rows == 1) {
         $user = $result->fetch_assoc();
-        // Verifica se a senha fornecida corresponde à senha criptografada no banco
+
         if (password_verify($senha_input, $user['senha'])) {
+
+            // Bloqueia se pagamento = 0
+            if ($user['pagamento'] == 0) {
+                echo json_encode(['status' => 'error', 'message' => 'Pagamento em aberto.']);
+                exit();
+            }
+
             // Armazena dados do usuário na sessão
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['nome'];
