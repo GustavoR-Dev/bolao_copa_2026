@@ -138,6 +138,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         return card;
     }
 
+    // Filtro por nome do usuário
+    document.getElementById('userSearchInput').addEventListener('input', function() {
+        const searchValue = this.value.toLowerCase();
+        const allPalpiteItems = document.querySelectorAll('.palpite-item');
+
+        allPalpiteItems.forEach(item => {
+            const nomeUsuario = item.querySelector('strong').innerText.toLowerCase();
+            if (nomeUsuario.includes(searchValue)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+
     container.addEventListener('click', (e) => {
         if (e.target.classList.contains('filter-btn')) {
             const clickedButton = e.target;
