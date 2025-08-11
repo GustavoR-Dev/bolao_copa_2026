@@ -74,7 +74,7 @@
 .fa-trophy.silver { color: #c0c0c0; }
 .fa-trophy.bronze { color: #cd7f32; }
 
-/* Estados da tabela */
+/* Estados da Pontuação */
 .loading-state, .empty-state, .error-state {
     text-align: center;
     padding: 3rem;
