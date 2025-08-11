@@ -80,7 +80,7 @@ elseif ($action == 'reset_password') {
         $stmt_update->bind_param("sss", $nova_senha, $novo_pin, $email);
 
         if ($stmt_update->execute()) {
-            echo json_encode(['status' => 'success', 'message' => 'Senha redefinida com sucesso! Novo PIN gerado.']);
+            echo json_encode(['status' => 'success', 'message' => 'Senha redefinida com sucesso!']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Erro ao redefinir a senha.']);
         }
