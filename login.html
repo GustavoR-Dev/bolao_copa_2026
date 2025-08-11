@@ -30,7 +30,7 @@
                     <button type="submit" class="btn-submit">Entrar</button>
                 </form> </br> </br> </br>
                 <p class="toggle-link">Não tem uma conta? <a id="showRegister">Cadastre-se</a></p>
-                <p class="toggle-link">Esqueceu sua senha? <a id="showRegister">Redefinir</a></p>
+                <p class="toggle-link">Esqueceu sua senha? <a id="showReset">Redefinir</a></p>
             </div>
 
             <!-- Formulário de Cadastro -->
@@ -56,6 +56,27 @@
                     <button type="submit" class="btn-submit">Cadastrar</button>
                 </form>
                 <p class="toggle-link">Já tem uma conta? <a id="showLogin">Faça Login</a></p>
+            </div>
+
+            <!-- Formulário de Redefinição -->
+            <div class="form-section" id="reset-form-section" style="display:none;">
+                <h2>Redefinir Senha</h2>
+                <form id="resetForm">
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="resetEmail" class="input-field" placeholder="E-mail" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-key"></i>
+                        <input type="text" id="resetPin" class="input-field" placeholder="PIN de Segurança" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="resetPassword" class="input-field" placeholder="Nova Senha" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Redefinir</button>
+                </form>
+                <p class="toggle-link"><a id="showLoginFromReset">Voltar ao Login</a></p>
             </div>
         </div>
         <div id="notification"></div>

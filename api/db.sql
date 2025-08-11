@@ -17,6 +17,7 @@ CREATE TABLE `usuarios` (
   `telefone` varchar(20) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `pagamento` tinyint(1) NOT NULL DEFAULT 0,
+  `pin` varchar(6) NOT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT 0,
   `pontos_total` int(11) NOT NULL DEFAULT 0,
   `palpites_enviados` tinyint(1) NOT NULL DEFAULT 0,
