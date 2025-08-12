@@ -11,6 +11,24 @@ document.addEventListener('DOMContentLoaded', async () => { // Tornamos a funç�
         userNameElement.textContent = user.nome;
     }
 
+    // --- BLOQUEIO DE PALPITES APÓS 10/06/2026 ---
+    const dataLimite = new Date('2026-06-10T23:59:59'); // último momento permitido
+    const agora = new Date();
+
+    if (agora > dataLimite) {
+        document.body.innerHTML = ''; // limpa a página para não exibir o formulário
+        Swal.fire({
+            title: 'Período Encerrado',
+            text: 'O prazo para enviar palpites terminou em 10/06/2026.',
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#d33'
+        }).then(() => {
+            window.location.href = 'index.html'; // ou outra página que desejar
+        });
+        return; // interrompe execução
+    }
+
     // --- VARIÁVEIS GLOBAIS DO ESCOPO ---
     const API_URL = 'api/jogos.php'; // Declarado APENAS UMA VEZ
     let totalGames = 0;
