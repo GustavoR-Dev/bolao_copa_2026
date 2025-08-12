@@ -118,8 +118,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">Todos</button>
-                    <button class="filter-btn" data-filter="100">100 pts</button>
-                    <button class="filter-btn" data-filter="50">50 pts</button>
+                    <button class="filter-btn" data-filter="10">10 pts</button>
+                    <button class="filter-btn" data-filter="8">8 pts</button>
+                    <button class="filter-btn" data-filter="5">5 pts</button>
+                    <button class="filter-btn" data-filter="3">3 pts</button>
                     <button class="filter-btn" data-filter="0">0 pts</button>
                 </div>
             </div>

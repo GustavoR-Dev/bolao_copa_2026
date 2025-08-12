@@ -93,22 +93,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Funções para Meus Palpites Recentes ---
     function getIconForPoints(points) {
-        if (points === 100) return 'fa-check'; // Acertou em cheio
-        if (points === 50) return 'fa-star-half-alt'; // Acertou o resultado (vitória/empate/derrota)
+        if (points === 10) return 'fa-check'; // Acertou em cheio
+        if (points === 8) return 'fa-star-half';
+        if (points === 5) return 'fa-star-half-alt';
+        if (points === 3) return 'fa-star-half';
         if (points === 0) return 'fa-times'; // Errou
         return 'fa-clock'; // Pendente
     }
 
     function getLabelForPoints(points) {
-        if (points === 100) return 'Acertou!';
-        if (points === 50) return 'Parcial!';
+        if (points === 10) return 'Acertou!';
+        if (points === 8) return 'Quase!';
+        if (points === 5) return 'Parcial!';
+        if (points === 3) return 'Baixo!';
         if (points === 0) return 'Errou!';
         return 'Pendente';
     }
 
     function getClassForPoints(points) {
-        if (points === 100) return 'acertou';
-        if (points === 50) return 'acertou-parcial';
+        if (points === 10) return 'acertou';
+        if (points === 8) return 'acertou-quase';
+        if (points === 5) return 'acertou-parcial';
+        if (points === 3) return 'acertou-baixo';
         if (points === 0) return 'errou';
         return ''; // Para pendente
     }
@@ -210,8 +216,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 3. Placares Exatos (100 pontos)
-        const placaresExatos = completedGames.filter(game => game.pontos_obtidos === 100).length;
+        // 3. Placares Exatos (10 pontos)
+        const placaresExatos = completedGames.filter(game => game.pontos_obtidos === 10).length;
 
         // 4. Pontos de hoje
         const hoje = new Date().toISOString().split('T')[0]; // YYYY-MM-DD

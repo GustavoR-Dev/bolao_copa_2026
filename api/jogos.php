@@ -15,12 +15,37 @@ function calcularPontos($palpite_casa, $palpite_visitante, $resultado_casa, $res
     if (is_null($resultado_casa) || is_null($resultado_visitante)) {
         return null; // Pontuação pendente
     }
+    
+    // 10 Pontos: Acertar o placar exato
     if ($palpite_casa == $resultado_casa && $palpite_visitante == $resultado_visitante) {
-        return 100;
+        return 10;
     }
-    if ($palpite_casa == $resultado_casa || $palpite_visitante == $resultado_visitante) {
-        return 50;
+    
+    // 8 Pontos: Acertar o empate
+    if ($palpite_casa == $palpite_visitante && $resultado_casa == $resultado_visitante) {
+        return 8;
     }
+    
+    // Determinar vencedor do palpite e do resultado
+    $vencedor_palpite = ($palpite_casa > $palpite_visitante) ? 'casa' : 
+                       (($palpite_casa < $palpite_visitante) ? 'visitante' : 'empate');
+    $vencedor_resultado = ($resultado_casa > $resultado_visitante) ? 'casa' : 
+                         (($resultado_casa < $resultado_visitante) ? 'visitante' : 'empate');
+    
+    // 5 Pontos: Acertar o placar do time vencedor
+    if ($vencedor_palpite == $vencedor_resultado && $vencedor_resultado != 'empate') {
+        if (($vencedor_resultado == 'casa' && $palpite_casa == $resultado_casa) ||
+            ($vencedor_resultado == 'visitante' && $palpite_visitante == $resultado_visitante)) {
+            return 5;
+        }
+    }
+    
+    // 3 Pontos: Acertar apenas o time vencedor
+    if ($vencedor_palpite == $vencedor_resultado && $vencedor_resultado != 'empate') {
+        return 3;
+    }
+    
+    // 0 Pontos: Não acertou nada
     return 0;
 }
 

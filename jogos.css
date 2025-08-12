@@ -130,6 +130,8 @@
 .points-badge.zero { background-color: #f8d7da; color: #721c24; }
 .points-badge.partial { background-color: #fff3cd; color: #856404; }
 .points-badge.exact { background-color: #d4edda; color: #155724; }
+.points-badge.almost { background-color: #ffdfcc; color: #ff5e02; }
+.points-badge.low { background-color: #d1ecf1; color: #0c5460; }
 
 /* Estilos para inputs do Admin */
 .admin-input-group {

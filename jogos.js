@@ -104,8 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
         card.dataset.gameId = item.id;
 
         let pointsClass = 'pending';
-        if (item.pontos_obtidos === 100) pointsClass = 'exact';
-        else if (item.pontos_obtidos === 50) pointsClass = 'partial';
+        if (item.pontos_obtidos === 10) pointsClass = 'exact';
+        else if (item.pontos_obtidos === 8) pointsClass = 'almost';
+        else if (item.pontos_obtidos === 5) pointsClass = 'partial';
+        else if (item.pontos_obtidos === 3) pointsClass = 'low';
         else if (item.pontos_obtidos === 0) pointsClass = 'zero';
 
         card.innerHTML = `
@@ -217,8 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Funções auxiliares para ícones e labels de pontos
     function getIconForPoints(points) {
-        if (points === 100) return 'fa-star';
-        if (points === 50) return 'fa-star-half-alt';
+        if (points === 10) return 'fa-star';
+        if (points === 8) return 'fa-star-half';
+        if (points === 5) return 'fa-star-half-alt';
+        if (points === 3) return 'fa-star-half';
         if (points === 0) return 'fa-times-circle';
         return 'fa-clock';
     }
