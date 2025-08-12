@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     const notification = document.getElementById('notification');
-
-    // Novos elementos para redefinição de senha
     const showReset = document.getElementById('showReset');
     const showLoginFromReset = document.getElementById('showLoginFromReset');
     const resetForm = document.getElementById('resetForm');
