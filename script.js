@@ -113,4 +113,37 @@ document.addEventListener('DOMContentLoaded', function() {
             icon.classList.toggle('fa-times');
         });
     }
+
+    // --- ALERTAS DE AJUDA E CONTATO (SweetAlert2) ---
+    const linkAjuda = document.querySelector('a[href="#ajuda"]');
+    const linkContato = document.querySelector('a[href="#contato"]');
+
+    if (linkAjuda) {
+        linkAjuda.addEventListener('click', (e) => {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Precisa de Ajuda?',
+                text: 'Para obter ajuda, entre em contato com o administrador ou consulte as regras do bolão.',
+                icon: 'info',
+                confirmButtonText: 'Entendi',
+                confirmButtonColor: '#259a3f'
+            });
+        });
+    }
+
+    if (linkContato) {
+        linkContato.addEventListener('click', (e) => {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Fale Conosco',
+                html: `
+                    <p>Email: <a href="mailto:gustavo.rossi2612@gmail.com">gustavo.rossi2612@gmail.com</a></p>
+                    <p>WhatsApp: <a href="https://wa.me/5585992376342" target="_blank">(85) 99237-6342</a></p>
+                `,
+                icon: 'success',
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#259a3f'
+            });
+        });
+    }
 });
