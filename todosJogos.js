@@ -110,10 +110,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         card.className = 'result-card game-card-admin';
         card.dataset.gameId = jogoId;
 
+        // Lista mestra de palpites
+        const allPalpites = jogo.palpites;
+
+        // Cria HTML base
         card.innerHTML = `
             <div class="card-header">
                 <div>
-                    <div class="game-title">${jogo.time_casa} vs ${jogo.time_visitante}</div>
+                    <div class="game-title">${jogo.time_casa} <span>vs</span> ${jogo.time_visitante} | <span>${jogo.data_formatada}</span></div>
                     <div class="game-result">Resultado Oficial: <strong>${jogo.resultado_oficial}</strong></div>
                 </div>
                 <div class="filter-buttons">
@@ -126,16 +130,82 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             </div>
             <div class="card-body">
-                <ul class="palpite-list">
-                    ${jogo.palpites.map(p => `
-                        <li class="palpite-item" data-points="${p.pontos_obtidos}">
-                            <span><strong>${p.nome_usuario}:</strong> ${p.placar_casa} x ${p.placar_visitante}</span>
-                            <span class="points-badge">${p.pontos_obtidos !== null ? p.pontos_obtidos + ' pts' : 'Pendente'}</span>
-                        </li>
-                    `).join('')}
-                </ul>
+                <ul class="palpite-list"></ul>
+                <div class="pagination-controls">
+                    <button class="prev-btn" disabled>Anterior</button>
+                    <span class="page-info">1 / 1</span>
+                    <button class="next-btn" disabled>Próximo</button>
+                </div>
             </div>
         `;
+
+        const palpiteList = card.querySelector('.palpite-list');
+        const prevBtn = card.querySelector('.prev-btn');
+        const nextBtn = card.querySelector('.next-btn');
+        const pageInfo = card.querySelector('.page-info');
+        const filterButtons = card.querySelectorAll('.filter-btn');
+
+        let currentFilter = 'all';
+        let currentPage = 0;
+        let filteredPalpites = [...allPalpites];
+
+        function renderPage() {
+            palpiteList.innerHTML = '';
+            const start = currentPage * 10;
+            const end = start + 10;
+            const pageItems = filteredPalpites.slice(start, end);
+
+            palpiteList.innerHTML = pageItems.map(p => `
+                <li class="palpite-item" data-points="${p.pontos_obtidos}">
+                    <span><strong>${p.nome_usuario}:</strong> ${p.placar_casa} x ${p.placar_visitante}</span>
+                    <span class="points-badge">${p.pontos_obtidos !== null ? p.pontos_obtidos + ' pts' : 'Pendente'}</span>
+                </li>
+            `).join('');
+
+            const totalPages = Math.ceil(filteredPalpites.length / 10) || 1;
+            pageInfo.textContent = `${currentPage + 1} / ${totalPages}`;
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage >= totalPages - 1;
+        }
+
+        function applyFilter(filterValue) {
+            currentFilter = filterValue;
+            currentPage = 0;
+
+            if (filterValue === 'all') {
+                filteredPalpites = [...allPalpites];
+            } else {
+                filteredPalpites = allPalpites.filter(p => String(p.pontos_obtidos) === filterValue);
+            }
+
+            renderPage();
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                renderPage();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredPalpites.length / 10);
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                renderPage();
+            }
+        });
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                applyFilter(btn.dataset.filter);
+            });
+        });
+
+        // Render inicial
+        renderPage();
 
         return card;
     }

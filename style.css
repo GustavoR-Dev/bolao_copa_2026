@@ -184,6 +184,13 @@ body {
     display: none;
     background: var(--primary-dark);
     padding: var(--spacing-md) 0;
+
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(-100%);
+}
+
+.nav-mobile.active {
+    transform: translateY(0);
 }
 
 .nav-mobile ul {
@@ -954,6 +961,10 @@ body {
         grid-template-columns: 1fr;
         text-align: center;
     }
+    .social-links {
+        justify-content: center;
+        margin-top: var(--spacing-md);
+    }
 }
 
 @media (max-width: 480px) {
@@ -1112,17 +1123,6 @@ input:focus {
 .user-dropdown a i {
     margin-right: 10px;
     width: 15px;
-}
-
-/* --- Estilos para o Menu Mobile --- */
-.nav-mobile {
-    /* ... seus estilos existentes ... */
-    transition: transform 0.3s ease-in-out;
-    transform: translateY(-100%);
-}
-
-.nav-mobile.active {
-    transform: translateY(0);
 }
 
 .ranking-separator {

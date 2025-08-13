@@ -1,0 +1,78 @@
+/* Estilos específicos para esta página */
+.game-card-admin .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.game-title { font-weight: bold; font-size: 1rem; }
+.game-result { font-size: 0.9rem; color: var(--primary-color); }
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 10px;
+    width: 100%; /* Ocupa a linha toda em telas pequenas */
+}
+.filter-btn {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.filter-btn:hover { background-color: #ced4da; }
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.palpite-list { list-style-type: none; padding-left: 0; margin-top: 10px; }
+.palpite-item {
+    background-color: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid transparent;
+}
+/* Cores baseadas na pontuação */
+.palpite-item[data-points="10"] { border-left-color: #28a745; }
+.palpite-item[data-points="8"] { border-left-color: #ff5e02; }
+.palpite-item[data-points="5"] { border-left-color: #ffc107; }
+.palpite-item[data-points="3"] { border-left-color: #0c5460; }
+.palpite-item[data-points="0"] { border-left-color: #dc3545; }
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px; /* distância do último item da lista */
+}
+
+.pagination-controls button {
+    background-color:#1e7e34;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #1e7e34;
+    transform: translateY(-1px);
+}
+
+.pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
