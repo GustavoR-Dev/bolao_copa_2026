@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const myBetsContainer = document.getElementById('my-bets-list-container');
     const todayGamesContainer = document.getElementById('jogos-hoje-container');
     const participantesElement = document.getElementById('total-participantes');
+    const premiacaoElement = document.getElementById('total-premiacao');
     const API_URL_RANKING = 'api/tabela.php';
     const API_URL_JOGOS = 'api/jogos.php';
 
@@ -361,10 +362,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Função para carregar total da premiacao ---
+    async function loadPremiacaoCount() {
+        try {
+            const response = await fetch(`${API_URL_RANKING}?action=get_premiacao_count`);
+            const result = await response.json();
+
+            if (result.status === 'success' && premiacaoElement) {
+                premiacaoElement.textContent = result.total_premiacao.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            } else {
+                console.error("Erro ao carregar o total da premiação:", result.message);
+                if (premiacaoElement) {
+                    premiacaoElement.textContent = "R$0,00";
+                }
+            }
+
+        } catch (error) {
+            console.error("Erro ao carregar o total da premiação:", error);
+            if (premiacaoElement) {
+                premiacaoElement.textContent = "R$0,00";
+            }
+        }
+    }
+
     // --- Inicialização ---
     loadRankingSummary();
     loadMyRecentBets();
     loadUserStats();
     loadTodayGames(); 
     loadParticipantesCount(); 
+    loadPremiacaoCount();
 });

@@ -41,6 +41,21 @@ elseif ($action == 'get_participantes_count') {
     echo json_encode(['status' => 'success', 'total_participantes' => $count]);
 }
 
+// --- AÇÃO PARA CONTABILIZAR PREMIAÇÃO CONFORME NÚMERO DE PARTICIPANTES ---
+elseif ($action == 'get_premiacao_count') {
+    // Conta apenas usuários que não são admin
+    $sql = "SELECT COUNT(*) as total_participantes FROM usuarios WHERE is_admin = 0";
+    $result = $conn->query($sql);
+    
+    $count = 0;
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $count = $row['total_participantes'] * 50; // Exemplo: R$50 por participante
+    }
+
+    echo json_encode(['status' => 'success', 'total_premiacao' => $count]);
+}
+
 else {
     echo json_encode(['status' => 'error', 'message' => 'Ação inválida.']);
 }
