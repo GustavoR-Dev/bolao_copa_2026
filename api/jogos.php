@@ -339,38 +339,49 @@ elseif ($action == 'get_jogo_details') {
     echo json_encode(['status' => 'success', 'jogo' => $jogo]);
 }
 
-// --- AÇÃO PARA BUSCAR TODOS OS PALPITES DE TODOS OS USUÁRIOS (ADMIN) ---
+// --- AÇÃO PARA BUSCAR TODOS OS PALPITES DE TODOS OS USUÁRIOS (COMUM) ---
 elseif ($action == 'get_todos_palpites') {
+
     $sql = "SELECT 
-                j.id as jogo_id, j.time_casa, j.time_visitante, j.data_jogo,
+                j.id as jogo_id, 
+                j.time_casa, 
+                j.time_visitante, 
+                j.data_jogo,
                 j.placar_casa AS resultado_casa, 
                 j.placar_visitante AS resultado_visitante,
-                p.placar_casa, p.placar_visitante,
+                p.placar_casa, 
+                p.placar_visitante,
                 u.nome as nome_usuario
             FROM palpites p
             JOIN jogos j ON p.jogo_id = j.id
             JOIN usuarios u ON p.usuario_id = u.id
             WHERE u.is_admin = 0
             ORDER BY j.data_jogo, j.id, u.nome";
-    
+
     $result = $conn->query($sql);
     $dados_agrupados = [];
 
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
+
         $jogo_id = $row['jogo_id'];
+
         if (!isset($dados_agrupados[$jogo_id])) {
             $dados_agrupados[$jogo_id] = [
                 'time_casa' => $row['time_casa'],
                 'time_visitante' => $row['time_visitante'],
                 'data_formatada' => (new DateTime($row['data_jogo']))->format('d/m H:i'),
-                'resultado_oficial' => !is_null($row['resultado_casa']) ? $row['resultado_casa'] . ' x ' . $row['resultado_visitante'] : 'Pendente',
+                'resultado_oficial' => !is_null($row['resultado_casa'])
+                    ? $row['resultado_casa'] . ' x ' . $row['resultado_visitante']
+                    : 'Pendente',
                 'palpites' => []
             ];
         }
 
         $pontos = calcularPontos(
-            $row['placar_casa'], $row['placar_visitante'],
-            $row['resultado_casa'], $row['resultado_visitante']
+            $row['placar_casa'],
+            $row['placar_visitante'],
+            $row['resultado_casa'],
+            $row['resultado_visitante']
         );
 
         $dados_agrupados[$jogo_id]['palpites'][] = [
@@ -381,7 +392,10 @@ elseif ($action == 'get_todos_palpites') {
         ];
     }
 
-    echo json_encode(['status' => 'success', 'dados' => $dados_agrupados]);
+    echo json_encode([
+        'status' => 'success',
+        'dados' => $dados_agrupados
+    ]);
 }
 
 else {

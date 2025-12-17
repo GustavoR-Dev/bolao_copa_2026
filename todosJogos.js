@@ -1,9 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const user = JSON.parse(localStorage.getItem('bolaoUser'));
-    if (!user || !user.is_admin) {
-        window.location.href = 'index.html';
-        return;
-    }
 
     const container = document.getElementById('allResultsContainer');
     const API_URL = 'api/jogos.php';
