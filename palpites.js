@@ -5,10 +5,33 @@ document.addEventListener('DOMContentLoaded', async () => { // Tornamos a funç�
         window.location.href = 'login.html';
         return;
     }
+    
+    // Função para limitar o nome exibido (mantida do script.js)
+    const limitarNomeExibido = (nomeCompleto) => {
+        // Primeiro limita por palavras (2 primeiras palavras)
+        const palavras = nomeCompleto.trim().split(/\s+/);
+        let nomeLimitado = palavras[0];
+        
+        if (palavras.length > 1) {
+            nomeLimitado += ' ' + palavras[1];
+        }
+        
+        // Depois limita por caracteres se ainda for muito longo
+        const maxCaracteres = 20;
+        if (nomeLimitado.length > maxCaracteres) {
+            nomeLimitado = nomeLimitado.substring(0, maxCaracteres) + '...';
+        } else if (palavras.length > 2) {
+            nomeLimitado += '...';
+        }
+        
+        return nomeLimitado;
+    };
+    
     // Garante que o elemento existe antes de tentar modificá-lo
     const userNameElement = document.getElementById('userName');
     if (userNameElement) {
-        userNameElement.textContent = user.nome;
+        // Usando a função para limitar o nome exibido
+        userNameElement.textContent = limitarNomeExibido(user.nome);
     }
 
     // --- BLOQUEIO DE PALPITES APÓS 10/06/2026 ---
