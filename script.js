@@ -54,8 +54,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- INICIALIZAÇÃO DA PÁGINA ---
     // Preenche as informações do usuário no cabeçalho
+
     if (userNameElement) {
-        userNameElement.textContent = user.nome;
+        // Função para limitar o nome exibido
+        const limitarNomeExibido = (nomeCompleto) => {
+            // Primeiro limita por palavras (2 primeiras palavras)
+            const palavras = nomeCompleto.trim().split(/\s+/);
+            let nomeLimitado = palavras[0];
+            
+            if (palavras.length > 1) {
+                nomeLimitado += ' ' + palavras[1];
+            }
+            
+            // Depois limita por caracteres se ainda for muito longo
+            const maxCaracteres = 20;
+            if (nomeLimitado.length > maxCaracteres) {
+                nomeLimitado = nomeLimitado.substring(0, maxCaracteres) + '...';
+            } else if (palavras.length > 2) {
+                nomeLimitado += '...';
+            }
+            
+            return nomeLimitado;
+        };
+        
+        // Aplica a limitação ao nome do usuário
+        userNameElement.textContent = limitarNomeExibido(user.nome);
     }
 
     // Adiciona funcionalidade de dropdown ao clicar no nome/avatar
