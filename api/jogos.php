@@ -135,6 +135,48 @@ elseif ($action == 'get_jogos_hoje') {
     echo json_encode(['status' => 'success', 'jogos' => $jogos, 'total' => count($jogos)]);
 }
 
+// --- AÇÃO PARA SALVAR RASCUNHO DE PALPITES ---
+elseif ($action == 'salvar_rascunho') {
+
+    if (!isset($input['usuario_id'], $input['palpites']) || !is_array($input['palpites'])) {
+        echo json_encode(['status' => 'error', 'message' => 'Dados inválidos.']);
+        exit();
+    }
+
+    $usuario_id = $input['usuario_id'];
+    $palpites = $input['palpites'];
+
+    $conn->begin_transaction();
+
+    try {
+        $sql = "INSERT INTO palpites (usuario_id, jogo_id, placar_casa, placar_visitante)
+                VALUES (?, ?, ?, ?)
+                ON DUPLICATE KEY UPDATE
+                    placar_casa = VALUES(placar_casa),
+                    placar_visitante = VALUES(placar_visitante)";
+
+        $stmt = $conn->prepare($sql);
+
+        foreach ($palpites as $p) {
+            $stmt->bind_param(
+                "iiii",
+                $usuario_id,
+                $p['jogo_id'],
+                $p['placar_casa'],
+                $p['placar_visitante']
+            );
+            $stmt->execute();
+        }
+
+        $conn->commit();
+        echo json_encode(['status' => 'success']);
+
+    } catch (Exception $e) {
+        $conn->rollback();
+        echo json_encode(['status' => 'error', 'message' => 'Erro ao salvar rascunho']);
+    }
+}
+
 // --- AÇÃO PARA SALVAR OS PALPITES ---
 elseif ($action == 'salvar_palpites') {
     if (!isset($input['usuario_id']) || !isset($input['palpites']) || !is_array($input['palpites'])) {
@@ -161,8 +203,11 @@ elseif ($action == 'salvar_palpites') {
     $conn->begin_transaction();
 
     try {
-        $sql = "INSERT INTO palpites (usuario_id, jogo_id, placar_casa, placar_visitante) VALUES (?, ?, ?, ?)
-                ON DUPLICATE KEY UPDATE placar_casa = VALUES(placar_casa), placar_visitante = VALUES(placar_visitante)";
+        $sql = "INSERT INTO palpites (usuario_id, jogo_id, placar_casa, placar_visitante)
+        VALUES (?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE
+            placar_casa = VALUES(placar_casa),
+            placar_visitante = VALUES(placar_visitante)";
         
         $stmt = $conn->prepare($sql);
 
@@ -207,6 +252,33 @@ elseif ($action == 'verificar_palpites_enviados') {
     $result = $stmt->get_result()->fetch_assoc();
 
     echo json_encode(['status' => 'success', 'enviados' => (bool)$result['palpites_enviados']]);
+}
+
+// --- AÇÃO PARA BUSCAR PALPITES SALVOS DO USUÁRIO ---
+elseif ($action == 'get_palpites_usuario') {
+
+    $usuario_id = $_GET['usuario_id'] ?? null;
+    if (!$usuario_id) {
+        echo json_encode(['status' => 'error', 'message' => 'Usuário não informado']);
+        exit();
+    }
+
+    $sql = "SELECT jogo_id, placar_casa, placar_visitante
+            FROM palpites
+            WHERE usuario_id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $usuario_id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $palpites = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $palpites[] = $row;
+    }
+
+    echo json_encode(['status' => 'success', 'palpites' => $palpites]);
 }
 
 // --- AÇÃO PARA BUSCAR PALPITES E RESULTADOS DO USUÁRIO ---
