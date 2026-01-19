@@ -314,12 +314,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="jogo-times">
                                 <div class="time">
-                                    <img src="" alt="" class="bandeira"> <!-- Adicione a URL da bandeira aqui -->
                                     <span>${jogo.time_casa}</span>
                                 </div>
                                 <div class="vs">VS</div>
                                 <div class="time">
-                                    <img src="" alt="" class="bandeira"> <!-- Adicione a URL da bandeira aqui -->
                                     <span>${jogo.time_visitante}</span>
                                 </div>
                             </div>
