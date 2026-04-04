@@ -59,23 +59,23 @@ INSERT INTO jogos (grupo, time_casa, time_visitante, data_jogo, placar_casa, pla
 
 -- Quinta-feira, 11 de junho de 2026
 ('A', 'México', 'África do Sul', '2026-06-11 16:00:00', NULL, NULL, 'AGENDADO'),
-('A', 'Coreia do Sul', 'Europa D', '2026-06-11 23:00:00', NULL, NULL, 'AGENDADO'),
+('A', 'Coreia do Sul', 'República Tcheca', '2026-06-11 23:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Sexta-feira, 12 de junho de 2026
-('B', 'Canadá', 'Europa A', '2026-06-12 16:00:00', NULL, NULL, 'AGENDADO'),
+('B', 'Canadá', 'Bósnia e Herzegovina', '2026-06-12 16:00:00', NULL, NULL, 'AGENDADO'),
 ('D', 'Estados Unidos', 'Paraguai', '2026-06-12 22:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Sábado, 13 de junho de 2026
-('D', 'Austrália', 'Europa C', '2026-06-13 01:00:00', NULL, NULL, 'AGENDADO'),
-('B', 'Qatar', 'Suíça', '2026-06-13 16:00:00', NULL, NULL, 'AGENDADO'),
+('B', 'Catar', 'Suíça', '2026-06-13 16:00:00', NULL, NULL, 'AGENDADO'),
 ('C', 'Brasil', 'Marrocos', '2026-06-13 19:00:00', NULL, NULL, 'AGENDADO'),
 ('C', 'Haiti', 'Escócia', '2026-06-13 22:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Domingo, 14 de junho de 2026
+('D', 'Austrália', 'Turquia', '2026-06-14 01:00:00', NULL, NULL, 'AGENDADO'),
 ('E', 'Alemanha', 'Curaçao', '2026-06-14 14:00:00', NULL, NULL, 'AGENDADO'),
 ('F', 'Holanda', 'Japão', '2026-06-14 17:00:00', NULL, NULL, 'AGENDADO'),
 ('E', 'Costa do Marfim', 'Equador', '2026-06-14 20:00:00', NULL, NULL, 'AGENDADO'),
-('F', 'Europa B', 'Tunísia', '2026-06-14 23:00:00', NULL, NULL, 'AGENDADO'),
+('F', 'Suécia', 'Tunísia', '2026-06-14 22:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Segunda-feira, 15 de junho de 2026
 ('H', 'Espanha', 'Cabo Verde', '2026-06-15 13:00:00', NULL, NULL, 'AGENDADO'),
@@ -85,35 +85,35 @@ INSERT INTO jogos (grupo, time_casa, time_visitante, data_jogo, placar_casa, pla
 
 -- Terça-feira, 16 de junho de 2026
 ('I', 'França', 'Senegal', '2026-06-16 16:00:00', NULL, NULL, 'AGENDADO'),
-('I', 'Intercontinental 2', 'Noruega', '2026-06-16 19:00:00', NULL, NULL, 'AGENDADO'),
+('I', 'Iraque', 'Noruega', '2026-06-16 19:00:00', NULL, NULL, 'AGENDADO'),
 ('J', 'Argentina', 'Argélia', '2026-06-16 22:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Quarta-feira, 17 de junho de 2026
 ('J', 'Áustria', 'Jordânia', '2026-06-17 01:00:00', NULL, NULL, 'AGENDADO'),
-('K', 'Portugal', 'Intercontinental 1', '2026-06-17 14:00:00', NULL, NULL, 'AGENDADO'),
+('K', 'Portugal', 'República Democrática do Congo', '2026-06-17 14:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Inglaterra', 'Croácia', '2026-06-17 17:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Gana', 'Panamá', '2026-06-17 20:00:00', NULL, NULL, 'AGENDADO'),
-('K', 'Uzbequistão', 'Colômbia', '2026-06-17 23:00:00', NULL, NULL, 'AGENDADO'),
+('K', 'Uzbequistão', 'Colômbia', '2026-06-17 21:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Quinta-feira, 18 de junho de 2026
-('A', 'Europa D', 'África do Sul', '2026-06-18 13:00:00', NULL, NULL, 'AGENDADO'),
-('B', 'Suíça', 'Europa A', '2026-06-18 16:00:00', NULL, NULL, 'AGENDADO'),
-('B', 'Canadá', 'Qatar', '2026-06-18 19:00:00', NULL, NULL, 'AGENDADO'),
+('A', 'República Tcheca', 'África do Sul', '2026-06-18 13:00:00', NULL, NULL, 'AGENDADO'),
+('B', 'Suíça', 'Bósnia e Herzegovina', '2026-06-18 16:00:00', NULL, NULL, 'AGENDADO'),
+('B', 'Canadá', 'Catar', '2026-06-18 19:00:00', NULL, NULL, 'AGENDADO'),
 ('A', 'México', 'Coreia do Sul', '2026-06-18 22:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Sexta-feira, 19 de junho de 2026
-('D', 'Europa C', 'Paraguai', '2026-06-19 01:00:00', NULL, NULL, 'AGENDADO'),
+('D', 'Turquia', 'Paraguai', '2026-06-19 01:00:00', NULL, NULL, 'AGENDADO'),
 ('D', 'Estados Unidos', 'Austrália', '2026-06-19 16:00:00', NULL, NULL, 'AGENDADO'),
 ('C', 'Escócia', 'Marrocos', '2026-06-19 19:00:00', NULL, NULL, 'AGENDADO'),
-('C', 'Brasil', 'Haiti', '2026-06-19 22:00:00', NULL, NULL, 'AGENDADO'),
+('C', 'Brasil', 'Haiti', '2026-06-19 21:30:00', NULL, NULL, 'AGENDADO'),
 
 -- Sábado, 20 de junho de 2026
-('F', 'Holanda', 'Europa B', '2026-06-20 14:00:00', NULL, NULL, 'AGENDADO'),
+('F', 'Holanda', 'Suécia', '2026-06-20 14:00:00', NULL, NULL, 'AGENDADO'),
 ('E', 'Alemanha', 'Costa do Marfim', '2026-06-20 17:00:00', NULL, NULL, 'AGENDADO'),
 ('E', 'Equador', 'Curaçao', '2026-06-20 21:00:00', NULL, NULL, 'AGENDADO'),
+('F', 'Tunísia', 'Japão', '2026-06-20 23:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Domingo, 21 de junho de 2026
-('F', 'Tunísia', 'Japão', '2026-06-21 01:00:00', NULL, NULL, 'AGENDADO'),
 ('H', 'Espanha', 'Arábia Saudita', '2026-06-21 13:00:00', NULL, NULL, 'AGENDADO'),
 ('G', 'Bélgica', 'Irã', '2026-06-21 16:00:00', NULL, NULL, 'AGENDADO'),
 ('H', 'Uruguai', 'Cabo Verde', '2026-06-21 19:00:00', NULL, NULL, 'AGENDADO'),
@@ -121,7 +121,7 @@ INSERT INTO jogos (grupo, time_casa, time_visitante, data_jogo, placar_casa, pla
 
 -- Segunda-feira, 22 de junho de 2026
 ('J', 'Argentina', 'Áustria', '2026-06-22 14:00:00', NULL, NULL, 'AGENDADO'),
-('I', 'França', 'Intercontinental 2', '2026-06-22 18:00:00', NULL, NULL, 'AGENDADO'),
+('I', 'França', 'Iraque', '2026-06-22 18:00:00', NULL, NULL, 'AGENDADO'),
 ('I', 'Noruega', 'Senegal', '2026-06-22 21:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Terça-feira, 23 de junho de 2026
@@ -129,39 +129,39 @@ INSERT INTO jogos (grupo, time_casa, time_visitante, data_jogo, placar_casa, pla
 ('K', 'Portugal', 'Uzbequistão', '2026-06-23 14:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Inglaterra', 'Gana', '2026-06-23 17:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Panamá', 'Croácia', '2026-06-23 20:00:00', NULL, NULL, 'AGENDADO'),
-('K', 'Colômbia', 'Intercontinental 1', '2026-06-23 23:00:00', NULL, NULL, 'AGENDADO'),
+('K', 'Colômbia', 'República Democrática do Congo', '2026-06-23 23:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Quarta-feira, 24 de junho de 2026
 ('B', 'Suíça', 'Canadá', '2026-06-24 16:00:00', NULL, NULL, 'AGENDADO'),
-('B', 'Europa A', 'Qatar', '2026-06-24 16:00:00', NULL, NULL, 'AGENDADO'),
+('B', 'Bósnia e Herzegovina', 'Catar', '2026-06-24 16:00:00', NULL, NULL, 'AGENDADO'),
 ('C', 'Escócia', 'Brasil', '2026-06-24 19:00:00', NULL, NULL, 'AGENDADO'),
 ('C', 'Marrocos', 'Haiti', '2026-06-24 19:00:00', NULL, NULL, 'AGENDADO'),
-('A', 'Europa D', 'México', '2026-06-24 22:00:00', NULL, NULL, 'AGENDADO'),
+('A', 'República Tcheca', 'México', '2026-06-24 22:00:00', NULL, NULL, 'AGENDADO'),
 ('A', 'África do Sul', 'Coreia do Sul', '2026-06-24 22:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Quinta-feira, 25 de junho de 2026
 ('E', 'Equador', 'Alemanha', '2026-06-25 17:00:00', NULL, NULL, 'AGENDADO'),
 ('E', 'Curaçao', 'Costa do Marfim', '2026-06-25 17:00:00', NULL, NULL, 'AGENDADO'),
+('F', 'Japão', 'Suécia', '2026-06-25 20:00:00', NULL, NULL, 'AGENDADO'),
 ('F', 'Tunísia', 'Holanda', '2026-06-25 20:00:00', NULL, NULL, 'AGENDADO'),
-('F', 'Japão', 'Europa B', '2026-06-25 20:00:00', NULL, NULL, 'AGENDADO'),
-('D', 'Europa C', 'Estados Unidos', '2026-06-25 23:00:00', NULL, NULL, 'AGENDADO'),
+('D', 'Turquia', 'Estados Unidos', '2026-06-25 23:00:00', NULL, NULL, 'AGENDADO'),
 ('D', 'Paraguai', 'Austrália', '2026-06-25 23:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Sexta-feira, 26 de junho de 2026
 ('I', 'Noruega', 'França', '2026-06-26 16:00:00', NULL, NULL, 'AGENDADO'),
-('I', 'Senegal', 'Intercontinental 2', '2026-06-26 16:00:00', NULL, NULL, 'AGENDADO'),
-('H', 'Uruguai', 'Espanha', '2026-06-26 21:00:00', NULL, NULL, 'AGENDADO'),
+('I', 'Senegal', 'Iraque', '2026-06-26 16:00:00', NULL, NULL, 'AGENDADO'),
 ('H', 'Cabo Verde', 'Arábia Saudita', '2026-06-26 21:00:00', NULL, NULL, 'AGENDADO'),
-('G', 'Egito', 'Irã', '2026-06-26 00:00:00', NULL, NULL, 'AGENDADO'),
-('G', 'Nova Zelândia', 'Bélgica', '2026-06-26 00:00:00', NULL, NULL, 'AGENDADO'),
+('H', 'Uruguai', 'Espanha', '2026-06-26 21:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Sábado, 27 de junho de 2026
+('G', 'Egito', 'Irã', '2026-06-27 00:00:00', NULL, NULL, 'AGENDADO'),
+('G', 'Nova Zelândia', 'Bélgica', '2026-06-27 00:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Panamá', 'Inglaterra', '2026-06-27 18:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Croácia', 'Gana', '2026-06-27 18:00:00', NULL, NULL, 'AGENDADO'),
 ('K', 'Colômbia', 'Portugal', '2026-06-27 20:30:00', NULL, NULL, 'AGENDADO'),
-('K', 'Intercontinental 1', 'Uzbequistão', '2026-06-27 20:30:00', NULL, NULL, 'AGENDADO'),
-('J', 'Jordânia', 'Argentina', '2026-06-27 23:00:00', NULL, NULL, 'AGENDADO'),
-('J', 'Argélia', 'Áustria', '2026-06-27 23:00:00', NULL, NULL, 'AGENDADO');
+('K', 'República Democrática do Congo', 'Uzbequistão', '2026-06-27 20:30:00', NULL, NULL, 'AGENDADO'),
+('J', 'Argélia', 'Áustria', '2026-06-27 23:00:00', NULL, NULL, 'AGENDADO'),
+('J', 'Jordânia', 'Argentina', '2026-06-27 23:00:00', NULL, NULL, 'AGENDADO');
 
 -- --------------------------------------------------------
 
