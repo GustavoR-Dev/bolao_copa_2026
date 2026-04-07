@@ -114,7 +114,7 @@ elseif ($action == 'login') {
 
             // Bloqueia se pagamento = 0
             if ($user['pagamento'] == 0) {
-                echo json_encode(['status' => 'error', 'message' => 'Pagamento em aberto.']);
+                echo json_encode(['status' => 'error', 'message' => 'Pagamento em aberto. Envie para (85)992376342']);
                 exit();
             }
 

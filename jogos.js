@@ -123,11 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="scores">
                     <div class="user-guess">
-                        <span class="label">Seu Palpite</span>
+                        <span class="label">Palpite</span>
                         <span class="score">${item.palpite_casa ?? '-'} x ${item.palpite_visitante ?? '-'}</span>
                     </div>
                     <div class="official-result" id="result-${item.id}">
-                        <span class="label">Resultado Oficial</span>
+                        <span class="label">Resultado</span>
                         ${renderOfficialResult(item)}
                     </div>
                 </div>

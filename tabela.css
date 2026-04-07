@@ -2,12 +2,15 @@
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 .ranking-table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 500px;
 }
 
 .ranking-table thead {
@@ -17,11 +20,27 @@
 
 .ranking-table th {
     padding: 1rem 1.5rem;
-    text-align: left;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: #495057;
+    font-weight: 700;
+}
+
+/* ALINHAMENTO CORRETO DOS CABEÇALHOS */
+.ranking-table th.col-pos {
+    text-align: center;
+    width: 20%;
+}
+
+.ranking-table th.col-user {
+    text-align: left;
+    width: 60%;
+}
+
+.ranking-table th.col-pts {
+    text-align: center;
+    width: 20%;
 }
 
 .ranking-table tbody tr {
@@ -42,22 +61,59 @@
     vertical-align: middle;
 }
 
-/* Estilos para colunas específicas */
-.col-pos {
-    width: 10%;
+/* ALINHAMENTO CORRETO DAS CÉLULAS */
+.ranking-table td.col-pos {
     text-align: center;
     font-weight: bold;
     font-size: 1.2rem;
 }
-.col-user {
-    width: 65%;
+
+.ranking-table td.col-user {
+    text-align: left;
     font-weight: 500;
 }
-.col-pts {
-    width: 25%;
+
+.ranking-table td.col-pts {
+    text-align: center;
     font-weight: bold;
     font-size: 1.1rem;
     color: var(--primary-color);
+}
+
+/* Estilo para o conteúdo do participante */
+.usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray-200);
+    color: var(--gray-600);
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.nome {
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.acertos {
+    font-size: 0.75rem;
+    color: var(--gray-500);
 }
 
 /* Destaque para o usuário logado */
@@ -65,19 +121,192 @@
     background-color: #e7f1ff;
     font-weight: bold;
 }
-.current-user .col-user {
+
+.current-user td.col-user {
     color: #0056b3;
 }
 
-/* Ícones do pódio */
+.current-user .nome {
+    color: #0056b3;
+}
+
+/* Ícones do pódio - para usar com emojis ou ícones */
+.medalha {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.medalha-ouro { color: #ffd700; }
+.medalha-prata { color: #c0c0c0; }
+.medalha-bronze { color: #cd7f32; }
+
 .fa-trophy.gold { color: #ffd700; }
 .fa-trophy.silver { color: #c0c0c0; }
 .fa-trophy.bronze { color: #cd7f32; }
 
 /* Estados da Pontuação */
-.loading-state, .empty-state, .error-state {
+.loading-state, 
+.empty-state, 
+.error-state {
     text-align: center;
     padding: 3rem;
     color: #6c757d;
     font-size: 1.1rem;
+}
+
+.loading-state i,
+.empty-state i,
+.error-state i {
+    margin-right: 8px;
+}
+
+/* ============================================ */
+/* RESPONSIVIDADE PARA TABELA NO MOBILE */
+/* ============================================ */
+
+@media (max-width: 768px) {
+    .table-container {
+        border-radius: 12px;
+        margin: 0 -4px;
+    }
+    
+    .ranking-table {
+        min-width: 450px;
+    }
+    
+    .ranking-table th,
+    .ranking-table td {
+        padding: 0.875rem 1rem;
+    }
+    
+    .ranking-table th {
+        font-size: 0.8rem;
+    }
+    
+    .ranking-table td.col-pos {
+        font-size: 1rem;
+    }
+    
+    .ranking-table td.col-pts {
+        font-size: 1rem;
+    }
+    
+    /* Ajuste do nome do usuário no mobile */
+    .usuario {
+        gap: 8px;
+    }
+    
+    .avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
+    }
+    
+    .nome {
+        font-size: 0.85rem;
+    }
+    
+    .acertos {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ranking-table {
+        min-width: 380px;
+    }
+    
+    .ranking-table th {
+        font-size: 0.7rem;
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .ranking-table td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .ranking-table td.col-pos {
+        font-size: 0.9rem;
+    }
+    
+    .ranking-table td.col-pts {
+        font-size: 0.9rem;
+    }
+    
+    .usuario {
+        gap: 6px;
+    }
+    
+    .avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+    }
+    
+    .nome {
+        font-size: 0.8rem;
+    }
+    
+    .acertos {
+        font-size: 0.6rem;
+    }
+}
+
+/* Para telas muito pequenas (iPhone SE 375px) */
+@media (max-width: 380px) {
+    .ranking-table {
+        min-width: 340px;
+    }
+    
+    .ranking-table th {
+        font-size: 0.65rem;
+        padding: 0.6rem 0.4rem;
+    }
+    
+    .ranking-table td {
+        padding: 0.6rem 0.4rem;
+    }
+    
+    .ranking-table td.col-pos {
+        font-size: 0.85rem;
+    }
+    
+    .ranking-table td.col-pts {
+        font-size: 0.85rem;
+    }
+    
+    .avatar {
+        width: 24px;
+        height: 24px;
+        font-size: 0.65rem;
+    }
+    
+    .nome {
+        font-size: 0.75rem;
+    }
+    
+    .acertos {
+        font-size: 0.55rem;
+    }
+}
+
+/* Scroll suave para a tabela no mobile */
+.table-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
 }

@@ -1,78 +1,481 @@
-/* Estilos específicos para esta página */
+/* Estilos específicos para a página todosJogos.html */
+
+/* Container principal dos jogos */
+.jogos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Card de cada jogo */
+.game-card-admin {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition-normal);
+}
+
+.game-card-admin:hover {
+    box-shadow: var(--shadow-lg);
+}
+
 .game-card-admin .card-header {
+    background: var(--gray-100);
+    color: var(--gray-800);
+    padding: 1rem 1.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 0.75rem;
+    border-bottom: 2px solid var(--gray-200);
 }
-.game-title { font-weight: bold; font-size: 1rem; }
-.game-result { font-size: 0.9rem; color: var(--primary-color); }
+
+.game-title {
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    color: var(--gray-800);
+}
+
+.game-title i {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.game-result {
+    font-size: 0.85rem;
+    background: var(--gray-200);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.game-result.completed {
+    background: #d4edda;
+    color: var(--primary-dark);
+}
+
+.game-result.pending {
+    background: var(--gray-200);
+    color: var(--gray-600);
+}
+
+/* Conteúdo do card */
+.card-body {
+    padding: 1rem 1.25rem;
+}
+
+/* Filtros de pontuação */
+.filter-section {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.filter-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
 .filter-buttons {
     display: flex;
     gap: 0.5rem;
-    margin-top: 10px;
-    width: 100%; /* Ocupa a linha toda em telas pequenas */
+    flex-wrap: wrap;
 }
+
 .filter-btn {
-    background-color: #e9ecef;
-    border: 1px solid #ced4da;
+    background-color: var(--white);
+    border: 1px solid var(--gray-300);
     border-radius: 20px;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.8rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    color: var(--gray-700);
 }
-.filter-btn:hover { background-color: #ced4da; }
+
+.filter-btn:hover {
+    background-color: var(--gray-100);
+    border-color: var(--primary-color);
+}
+
 .filter-btn.active {
     background-color: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
 }
 
-.palpite-list { list-style-type: none; padding-left: 0; margin-top: 10px; }
+/* Lista de palpites */
+.palpite-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
 .palpite-item {
-    background-color: #f8f9fa;
-    padding: 8px 12px;
-    border-radius: 6px;
-    margin-bottom: 5px;
+    background-color: var(--white);
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius-md);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
     border-left: 4px solid transparent;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-sm);
 }
-/* Cores baseadas na pontuação */
-.palpite-item[data-points="10"] { border-left-color: #28a745; }
-.palpite-item[data-points="8"] { border-left-color: #ff5e02; }
-.palpite-item[data-points="5"] { border-left-color: #ffc107; }
-.palpite-item[data-points="3"] { border-left-color: #0c5460; }
-.palpite-item[data-points="0"] { border-left-color: #dc3545; }
 
+.palpite-item:hover {
+    background-color: var(--gray-50);
+    transform: translateX(2px);
+}
+
+/* Informações do usuário */
+.palpite-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 2;
+    min-width: 0;
+}
+
+.palpite-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-700);
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.palpite-nome {
+    font-weight: 600;
+    color: var(--gray-800);
+    font-size: 0.9rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.3;
+}
+
+/* Detalhes do palpite */
+.palpite-detalhes {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.palpite-placar {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--gray-800);
+    background: var(--gray-100);
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.palpite-pontos {
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    text-align: center;
+    min-width: 50px;
+    white-space: nowrap;
+}
+
+/* Cores baseadas na pontuação - APENAS BORDA LATERAL */
+.palpite-item[data-points="10"] { 
+    border-left-color: #28a745; 
+}
+.palpite-item[data-points="10"] .palpite-pontos {
+    background: #28a74515;
+    color: #28a745;
+}
+
+.palpite-item[data-points="8"] { 
+    border-left-color: #ff5e02; 
+}
+.palpite-item[data-points="8"] .palpite-pontos {
+    background: #ff5e0215;
+    color: #ff5e02;
+}
+
+.palpite-item[data-points="5"] { 
+    border-left-color: #ffc107; 
+}
+.palpite-item[data-points="5"] .palpite-pontos {
+    background: #ffc10715;
+    color: #856404;
+}
+
+.palpite-item[data-points="3"] { 
+    border-left-color: #0c5460; 
+}
+.palpite-item[data-points="3"] .palpite-pontos {
+    background: #0c546015;
+    color: #0c5460;
+}
+
+.palpite-item[data-points="0"] { 
+    border-left-color: #dc3545; 
+}
+.palpite-item[data-points="0"] .palpite-pontos {
+    background: #dc354515;
+    color: #dc3545;
+}
+
+.palpite-item[data-points=""] .palpite-pontos {
+    background: var(--gray-100);
+    color: var(--gray-600);
+}
+
+/* Paginação */
 .pagination-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-top: 10px; /* distância do último item da lista */
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding: 1rem 0;
 }
 
 .pagination-controls button {
-    background-color:#1e7e34;
-    color: #fff;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
+    background-color: var(--gray-200);
+    color: var(--gray-800);
+    border: 1px solid var(--gray-300);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-md);
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .pagination-controls button:hover:not(:disabled) {
-    background-color: #1e7e34;
-    transform: translateY(-1px);
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 .pagination-controls button:disabled {
-    background-color: #ccc;
+    background-color: var(--gray-100);
+    color: var(--gray-400);
     cursor: not-allowed;
+    transform: none;
+    border-color: var(--gray-200);
+}
+
+.pagination-info {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+/* Estado vazio */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--gray-500);
+}
+
+.empty-state i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* ============================================ */
+/* RESPONSIVIDADE - AJUSTES NOME E PLACAR */
+/* ============================================ */
+
+@media (max-width: 768px) {
+    .game-card-admin .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .game-title {
+        font-size: 0.9rem;
+        width: 100%;
+    }
+    
+    .game-result {
+        font-size: 0.75rem;
+    }
+    
+    .card-body {
+        padding: 0.875rem 1rem;
+    }
+    
+    .filter-buttons {
+        gap: 0.4rem;
+    }
+    
+    .filter-btn {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.7rem;
+    }
+    
+    /* AJUSTE PRINCIPAL: NOME E PLACAR NO MOBILE */
+    .palpite-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+        padding: 0.75rem;
+    }
+    
+    .palpite-user {
+        width: 100%;
+        gap: 0.6rem;
+    }
+    
+    .palpite-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 0.7rem;
+    }
+    
+    .palpite-nome {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        word-break: break-word;
+    }
+    
+    .palpite-detalhes {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 0.75rem;
+        padding-left: 2.5rem;
+    }
+    
+    .palpite-placar {
+        font-size: 0.85rem;
+        padding: 0.2rem 0.5rem;
+    }
+    
+    .palpite-pontos {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.5rem;
+        min-width: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-card-admin .card-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .game-title {
+        font-size: 0.85rem;
+    }
+    
+    .game-title i {
+        font-size: 0.9rem;
+    }
+    
+    .card-body {
+        padding: 0.75rem;
+    }
+    
+    .filter-title {
+        font-size: 0.7rem;
+    }
+    
+    .filter-btn {
+        padding: 0.25rem 0.6rem;
+        font-size: 0.65rem;
+    }
+    
+    .palpite-item {
+        padding: 0.6rem;
+        gap: 0.5rem;
+    }
+    
+    .palpite-user {
+        gap: 0.5rem;
+    }
+    
+    .palpite-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 0.65rem;
+    }
+    
+    .palpite-nome {
+        font-size: 0.8rem;
+    }
+    
+    .palpite-detalhes {
+        padding-left: 2rem;
+        gap: 0.6rem;
+    }
+    
+    .palpite-placar {
+        font-size: 0.8rem;
+    }
+    
+    .palpite-pontos {
+        font-size: 0.75rem;
+        min-width: 40px;
+    }
+    
+    .pagination-controls {
+        gap: 0.5rem;
+    }
+    
+    .pagination-controls button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .pagination-info {
+        font-size: 0.75rem;
+    }
+}
+
+/* Para telas muito pequenas (iPhone SE) */
+@media (max-width: 380px) {
+    .palpite-nome {
+        font-size: 0.75rem;
+    }
+    
+    .palpite-detalhes {
+        flex-wrap: wrap;
+        padding-left: 0;
+    }
+    
+    .palpite-placar {
+        font-size: 0.75rem;
+    }
+    
+    .palpite-pontos {
+        font-size: 0.7rem;
+    }
 }

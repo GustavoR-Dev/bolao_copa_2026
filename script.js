@@ -134,6 +134,69 @@ document.addEventListener('DOMContentLoaded', function() {
             const icon = mobileMenuBtn.querySelector('i');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
+            
+            // TRAVA O SCROLL QUANDO O MENU ESTIVER ABERTO
+            if (navMobile.classList.contains('active')) {
+                // Guarda a posição atual do scroll
+                const scrollY = window.scrollY;
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${scrollY}px`;
+                document.body.style.width = '100%';
+                document.body.style.overflow = 'hidden';
+            } else {
+                // Restaura o scroll quando o menu for fechado
+                const scrollY = document.body.style.top;
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                document.body.style.overflow = '';
+                if (scrollY) {
+                    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                }
+            }
+        });
+        
+        // Fecha o menu ao clicar em um link e restaura o scroll
+        const mobileLinks = navMobile.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMobile.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                
+                // Restaura o scroll
+                const scrollY = document.body.style.top;
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                document.body.style.overflow = '';
+                if (scrollY) {
+                    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                }
+            });
+        });
+        
+        // Fecha o menu ao clicar fora e restaura o scroll
+        document.addEventListener('click', function(event) {
+            if (navMobile.classList.contains('active')) {
+                if (!navMobile.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                    navMobile.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    
+                    // Restaura o scroll
+                    const scrollY = document.body.style.top;
+                    document.body.style.position = '';
+                    document.body.style.top = '';
+                    document.body.style.width = '';
+                    document.body.style.overflow = '';
+                    if (scrollY) {
+                        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                    }
+                }
+            }
         });
     }
 

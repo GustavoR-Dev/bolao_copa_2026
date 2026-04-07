@@ -93,15 +93,16 @@
             <!-- Botão de Publicação Fixo -->
             <div class="publish-section">
                 <div class="publish-info">
-                    <p class="publish-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Atenção: Após publicar, você <strong>não poderá</strong> mais editar seus palpites!
-                    </p>
-                    <div style="height: 6px;"></div>
-                    <p class="publish-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Atenção: Seus palpites <strong>serão salvos para você,</strong> caso você saia desta página, mas publicados somente após a confirmação final.
-                    </p>
+                    <div class="warning-messages">
+                        <div class="warning-message warning-yellow">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Atenção: Após publicar, você <strong>não poderá</strong> mais editar seus palpites!</span>
+                        </div>
+                        <div class="warning-message warning-yellow">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Atenção: Seus palpites <strong>serão salvos automaticamente</strong> caso você saia desta página, mas serão publicados <strong>somente após a confirmação final.</strong></span>
+                        </div>
+                    </div>
                 </div>
                 <button class="btn-publish-main" id="publishBtn" disabled>
                     <i class="fas fa-paper-plane"></i>

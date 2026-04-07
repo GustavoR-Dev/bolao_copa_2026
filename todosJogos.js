@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="card-header">
                 <div>
                     <div class="game-title">${jogo.time_casa} <span>vs</span> ${jogo.time_visitante} | <span>${jogo.data_formatada}</span></div>
-                    <div class="game-result">Resultado Oficial: <strong>${jogo.resultado_oficial}</strong></div>
+                    <div class="game-result">Resultado: <strong>${jogo.resultado_oficial}</strong></div>
                 </div>
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">Todos</button>

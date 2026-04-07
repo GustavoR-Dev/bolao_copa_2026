@@ -5,6 +5,23 @@
     box-sizing: border-box;
 }
 
+/* IMPEDE QUALQUER ROLAGEM HORIZONTAL */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--gray-700);
+    background-color: var(--gray-50);
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 :root {
     /* Cores principais */
     --primary-color: #1e7e34;
@@ -75,15 +92,36 @@ body {
     padding: 0 var(--spacing-md);
 }
 
-/* Header */
+/* Header - SEMPRE FIXO */
 .header {
     background: var(--gradient-primary);
     color: var(--white);
     padding: var(--spacing-md) 0;
     box-shadow: var(--shadow-lg);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
+}
+
+/* Espaçamento para compensar o header fixo */
+.main {
+    padding: var(--spacing-2xl) 0;
+    margin-top: 80px; /* Altura do header + espaçamento */
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+    .main {
+        margin-top: 70px; /* Altura menor do header no mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        margin-top: 60px;
+    }
 }
 
 .header-content {
@@ -177,46 +215,86 @@ body {
     color: var(--white);
     font-size: 1.5rem;
     cursor: pointer;
+    z-index: 1001;
 }
 
-/* Mobile Navigation */
+/* ============================================ */
+/* MENU MOBILE CORRIGIDO - FICA ABAIXO DO HEADER */
+/* ============================================ */
 .nav-mobile {
     display: none;
+    position: fixed;
+    top: 70px; /* Altura do header no desktop */
+    left: 0;
+    width: 100%;
     background: var(--primary-dark);
-    padding: var(--spacing-md) 0;
-
+    z-index: 999;
+    box-shadow: var(--shadow-lg);
+    padding: 0;
+    transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
-    transform: translateY(-100%);
+}
+
+/* Ajuste da posição do menu mobile no mobile */
+@media (max-width: 768px) {
+    .nav-mobile {
+        top: 60px; /* Altura do header no mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-mobile {
+        top: 55px;
+    }
 }
 
 .nav-mobile.active {
-    transform: translateY(0);
+    display: block;
+    transform: translateX(0);
 }
 
 .nav-mobile ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-mobile li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-mobile li:last-child {
+    border-bottom: none;
 }
 
 .nav-mobile a {
     color: var(--white);
     text-decoration: none;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-md);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+    font-size: 1rem;
     transition: var(--transition-normal);
 }
 
 .nav-mobile a:hover,
 .nav-mobile a.active {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
+    padding-left: 24px;
 }
 
-/* Main Content */
-.main {
-    padding: var(--spacing-2xl) 0;
+.nav-mobile a i {
+    width: 24px;
+    font-size: 1.2rem;
+    text-align: center;
 }
+/* ============================================ */
 
 /* Hero Section */
 .hero {
@@ -891,13 +969,19 @@ body {
     .nav-desktop {
         display: none;
     }
-    
+
     .mobile-menu-btn {
         display: block;
     }
     
+    /* Menu mobile - versão responsiva */
     .nav-mobile {
+        top: 60px;
+    }
+    
+    .nav-mobile.active {
         display: block;
+        transform: translateX(0);
     }
     
     .user-info {
@@ -954,9 +1038,14 @@ body {
         grid-template-columns: 1fr;
         text-align: center;
     }
+    
     .social-links {
         justify-content: center;
         margin-top: var(--spacing-md);
+    }
+
+    .logo h1 {
+        font-size: 1.1rem;
     }
 }
 
@@ -1066,6 +1155,7 @@ input:focus {
     
     .main {
         padding: 0;
+        margin-top: 0;
     }
     
     .hero {
@@ -1074,9 +1164,6 @@ input:focus {
         box-shadow: none;
     }
 }
-
-
-
 
 /* --- Estilos para o Dropdown do Usuário --- */
 .user-info {
@@ -1096,7 +1183,7 @@ input:focus {
     width: 150px;
     z-index: 100;
     overflow: hidden;
-    margin-top: 10px; /* Espaço entre o header e o dropdown */
+    margin-top: 10px;
 }
 
 .user-dropdown a {
@@ -1135,6 +1222,7 @@ input:focus {
 .user-filter {
     margin-bottom: 15px;
 }
+
 .user-filter input {
     width: 100%;
     padding: 8px 10px;
@@ -1143,20 +1231,35 @@ input:focus {
     font-size: 0.9rem;
 }
 
-/* --- Responsividade para Celular --- */
+/* --- Responsividade para Celular com HEADER FIXO --- */
 @media screen and (max-width: 768px) {
     /* Container */
     .container {
         padding: 0 var(--spacing-md);
     }
 
-    /* Header */
+    /* Header fixo no mobile */
     .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
         padding: var(--spacing-sm) 0;
+    }
+
+    /* Espaço para o header fixo no mobile */
+    .main {
+        margin-top: 70px;
+        padding-top: var(--spacing-md);
     }
 
     .header-content {
         gap: var(--spacing-sm);
+    }
+
+    .user-info {
+        margin-left: auto;
     }
 
     .logo {
@@ -1168,29 +1271,35 @@ input:focus {
     }
 
     .nav-desktop {
-        display: none; /* Esconde menu desktop */
+        display: none;
     }
 
     .user-info .user-name {
-        display: none; /* Esconde nome no mobile para economizar espaço */
+        display: none;
     }
 
     .mobile-menu-btn {
-        display: block; /* Mostra botão do menu */
+        display: block;
         padding: var(--spacing-xs);
     }
 
     /* Mobile Navigation */
     .nav-mobile {
-        display: block; /* Habilita o display, o controle de visibilidade é pelo transform */
+        display: block;
         position: fixed;
-        top: 60px; /* Ajuste conforme a altura do seu header */
+        top: 60px;
         left: 0;
         width: 100%;
         background: var(--primary-dark);
         z-index: 999;
         box-shadow: var(--shadow-lg);
         padding: var(--spacing-md) 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-mobile.active {
+        transform: translateX(0);
     }
 
     .nav-mobile ul {
@@ -1234,7 +1343,7 @@ input:focus {
     }
 
     .hero-image {
-        display: none; /* Esconde ícone grande no mobile para focar no conteúdo */
+        display: none;
     }
 
     /* Grid do Dashboard */
@@ -1271,5 +1380,13 @@ input:focus {
     
     .stat {
         flex: 1 1 40%;
+    }
+
+    .main {
+        margin-top: 60px;
+    }
+
+    .nav-mobile {
+        top: 55px;
     }
 }

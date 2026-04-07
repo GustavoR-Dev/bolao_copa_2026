@@ -1,3 +1,7 @@
+/* ============================================ */
+/* ESTILOS PARA A PÁGINA DE PALPITES/JOGOS */
+/* ============================================ */
+
 .results-container {
     display: flex;
     flex-direction: column;
@@ -18,6 +22,7 @@
     border-radius: 8px;
 }
 
+/* CARD DO JOGO */
 .result-card {
     background-color: #fff;
     border-radius: 12px;
@@ -27,132 +32,328 @@
 
 .card-header {
     background-color: #f8f9fa;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
     font-size: 0.8rem;
     color: #6c757d;
     border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
+/* Títulos das seções */
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--gray-800);
+}
+
+.section-title:first-of-type {
+    margin-top: 0;
+}
+
+/* CORPO DO CARD - LINHA ÚNICA */
 .card-body {
-    padding: 1.5rem;
+    padding: 1rem;
     display: flex;
-    flex-direction: row; /* VOLTA A SER LINHA */
-    justify-content: space-between; /* Espaça os blocos de times e placares */
-    align-items: center; /* Alinha verticalmente */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     gap: 1rem;
 }
 
-/* 2. Estiliza o bloco da linha dos times */
+/* BLOCO DOS TIMES - FORÇA MESMA LINHA */
 .teams-line {
-     /* Ocupa cerca de 50% da largura */
-    width: 25%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 1.1rem; /* Tamanho da fonte ajustado */
+    justify-content: center;
+    gap: 0.5rem;
+    flex-shrink: 1;
+    flex-wrap: nowrap; /* IMPEDE QUEBRA DE LINHA */
+    overflow-x: auto; /* PERMITE SCROLL HORIZONTAL SE NECESSÁRIO */
+    -webkit-overflow-scrolling: touch;
+}
+
+.team-name {
     font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap; /* FORÇA NOME EM UMA LINHA */
+    flex-shrink: 0;
 }
 
-.teams-line .team-name {
-    flex: 1;
-    padding: 0 0.5rem; /* Adiciona um respiro */
-}
-
-.teams-line .team-name.home {
+.team-name.home {
     text-align: right;
 }
 
-.teams-line .team-name.away {
+.team-name.away {
     text-align: left;
 }
 
-.teams-line .vs-separator {
-    margin: 0 1rem; /* Espaçamento do "X" */
-    font-weight: 500;
+.vs-separator {
+    font-weight: 700;
     color: #6c757d;
+    font-size: 0.9rem;
+    flex-shrink: 0;
 }
 
-/* 3. Estiliza o bloco dos placares */
+/* BLOCO DOS PLACARES */
 .scores {
-    flex-basis: 65%; /* Ocupa os outros 50% da largura */
     display: flex;
-    justify-content: space-around;
-    text-align: center;
-    background-color: transparent; /* Remove o fundo que adicionei antes */
-    padding: 0; /* Remove o padding extra */
-    border-radius: 0;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
 }
 
-/* Ajustes finos para garantir que tudo caiba em telas menores */
-@media (max-width: 600px) {
-    .card-body {
-        flex-direction: column; /* Em telas pequenas, volta a empilhar para não quebrar o layout */
-        gap: 1.5rem;
-    }
-
-    .teams-line, .scores {
-        flex-basis: 100%; /* Ocupam a largura total quando empilhados */
-        width: 100%;
-    }
-
-    .teams-line {
-        font-size: 1rem; /* Diminui um pouco a fonte */
-    }
+.score-item, .user-guess, .official-result {
+    text-align: center;
+    min-width: 70px;
 }
 
 .scores .label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #6c757d;
     margin-bottom: 0.25rem;
 }
 
 .scores .score {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: bold;
 }
 
-.card-footer {
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.points-badge {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.points-badge.pending { background-color: #e9ecef; color: #495057; }
-.points-badge.zero { background-color: #f8d7da; color: #721c24; }
-.points-badge.partial { background-color: #fff3cd; color: #856404; }
-.points-badge.exact { background-color: #d4edda; color: #155724; }
-.points-badge.almost { background-color: #ffdfcc; color: #ff5e02; }
-.points-badge.low { background-color: #d1ecf1; color: #0c5460; }
-
-/* Estilos para inputs do Admin */
+/* ADMIN INPUTS */
 .admin-input-group {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
+
 .admin-score-input {
-    width: 45px;
-    height: 40px;
+    width: 50px;
+    height: 38px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border: 1px solid #ced4da;
     border-radius: 6px;
 }
+
 .btn-save-result {
     background: var(--primary-color);
     color: white;
     border: none;
     border-radius: 6px;
-    width: 35px;
-    height: 35px;
+    width: 34px;
+    height: 34px;
     cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.btn-save-result:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.btn-edit-game {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition-normal);
+}
+
+.btn-edit-game:hover {
+    color: var(--primary-color);
+}
+
+/* FOOTER DO CARD */
+.card-footer {
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #fafafa;
+    border-top: 1px solid #e9ecef;
+}
+
+/* BADGES DE PONTUAÇÃO */
+.points-badge {
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.points-badge.pending { 
+    background-color: #e9ecef; 
+    color: #495057; 
+}
+
+.points-badge.zero { 
+    background-color: #f8d7da; 
+    color: #721c24; 
+}
+
+.points-badge.partial { 
+    background-color: #fff3cd; 
+    color: #856404; 
+}
+
+.points-badge.exact { 
+    background-color: #d4edda; 
+    color: #155724; 
+}
+
+.points-badge.almost { 
+    background-color: #ffdfcc; 
+    color: #ff5e02; 
+}
+
+.points-badge.low { 
+    background-color: #d1ecf1; 
+    color: #0c5460; 
+}
+
+/* ============================================ */
+/* RESPONSIVIDADE - NOMES NA MESMA LINHA */
+/* ============================================ */
+
+@media (max-width: 768px) {
+    .team-name {
+        font-size: 0.85rem;
+    }
+    
+    .score-item, .user-guess, .official-result {
+        min-width: 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .card-body {
+        flex-direction: column !important;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+    
+    .teams-line {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+    }
+    
+    .team-name {
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+    
+    .vs-separator {
+        font-size: 0.8rem;
+    }
+    
+    .scores {
+        width: 100%;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .score-item, .user-guess, .official-result {
+        min-width: 65px;
+    }
+    
+    .scores .score {
+        font-size: 1rem;
+    }
+    
+    .scores .label {
+        font-size: 0.65rem;
+    }
+    
+    .admin-score-input {
+        width: 45px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-save-result {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-name {
+        font-size: 0.8rem;
+    }
+    
+    .vs-separator {
+        font-size: 0.75rem;
+    }
+    
+    .score-item, .user-guess, .official-result {
+        min-width: 55px;
+    }
+    
+    .scores .score {
+        font-size: 0.95rem;
+    }
+    
+    .card-header {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* iPhone SE (375px) */
+@media (max-width: 375px) {
+    .team-name {
+        font-size: 0.75rem;
+    }
+    
+    .vs-separator {
+        font-size: 0.7rem;
+    }
+    
+    .score-item, .user-guess, .official-result {
+        min-width: 50px;
+    }
+    
+    .scores .score {
+        font-size: 0.9rem;
+    }
+    
+    .scores .label {
+        font-size: 0.6rem;
+    }
+    
+    .admin-score-input {
+        width: 40px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+    
+    .btn-save-result {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Para telas muito pequenas - permite scroll horizontal suave */
+@media (max-width: 340px) {
+    .teams-line {
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+    
+    .team-name {
+        font-size: 0.7rem;
+    }
 }

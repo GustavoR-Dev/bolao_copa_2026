@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="data">${bet.data_formatada.split(' ')[0]}</span>
                         </div>
                         <div class="palpite-info">
-                            <span class="palpite">Seu palpite: ${bet.palpite_casa ?? '?'} x ${bet.palpite_visitante ?? '?'}</span>
+                            <span class="palpite">Palpite: ${bet.palpite_casa ?? '?'} x ${bet.palpite_visitante ?? '?'}</span>
                             <span class="resultado ${palpiteClass}">
                                 <i class="fas ${icon}"></i>
                                 ${pointsText}
