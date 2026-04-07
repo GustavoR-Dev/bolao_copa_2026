@@ -59,7 +59,7 @@ INSERT INTO jogos (grupo, time_casa, time_visitante, data_jogo, placar_casa, pla
 
 -- Quinta-feira, 11 de junho de 2026
 ('A', 'México', 'África do Sul', '2026-06-11 16:00:00', NULL, NULL, 'AGENDADO'),
-('A', 'Coreia do Sul', 'República Tcheca', '2026-06-11 23:00:00', NULL, NULL, 'AGENDADO'),
+('A', 'Coreia do Sul', 'Rep. Tcheca', '2026-06-11 23:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Sexta-feira, 12 de junho de 2026
 ('B', 'Canadá', 'Bósnia e Herzegovina', '2026-06-12 16:00:00', NULL, NULL, 'AGENDADO'),
@@ -90,13 +90,13 @@ INSERT INTO jogos (grupo, time_casa, time_visitante, data_jogo, placar_casa, pla
 
 -- Quarta-feira, 17 de junho de 2026
 ('J', 'Áustria', 'Jordânia', '2026-06-17 01:00:00', NULL, NULL, 'AGENDADO'),
-('K', 'Portugal', 'República Democrática do Congo', '2026-06-17 14:00:00', NULL, NULL, 'AGENDADO'),
+('K', 'Portugal', 'Rep. Dem. do Congo', '2026-06-17 14:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Inglaterra', 'Croácia', '2026-06-17 17:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Gana', 'Panamá', '2026-06-17 20:00:00', NULL, NULL, 'AGENDADO'),
 ('K', 'Uzbequistão', 'Colômbia', '2026-06-17 21:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Quinta-feira, 18 de junho de 2026
-('A', 'República Tcheca', 'África do Sul', '2026-06-18 13:00:00', NULL, NULL, 'AGENDADO'),
+('A', 'Rep. Tcheca', 'África do Sul', '2026-06-18 13:00:00', NULL, NULL, 'AGENDADO'),
 ('B', 'Suíça', 'Bósnia e Herzegovina', '2026-06-18 16:00:00', NULL, NULL, 'AGENDADO'),
 ('B', 'Canadá', 'Catar', '2026-06-18 19:00:00', NULL, NULL, 'AGENDADO'),
 ('A', 'México', 'Coreia do Sul', '2026-06-18 22:00:00', NULL, NULL, 'AGENDADO'),
@@ -129,14 +129,14 @@ INSERT INTO jogos (grupo, time_casa, time_visitante, data_jogo, placar_casa, pla
 ('K', 'Portugal', 'Uzbequistão', '2026-06-23 14:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Inglaterra', 'Gana', '2026-06-23 17:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Panamá', 'Croácia', '2026-06-23 20:00:00', NULL, NULL, 'AGENDADO'),
-('K', 'Colômbia', 'República Democrática do Congo', '2026-06-23 23:00:00', NULL, NULL, 'AGENDADO'),
+('K', 'Colômbia', 'Rep. Dem. do Congo', '2026-06-23 23:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Quarta-feira, 24 de junho de 2026
 ('B', 'Suíça', 'Canadá', '2026-06-24 16:00:00', NULL, NULL, 'AGENDADO'),
 ('B', 'Bósnia e Herzegovina', 'Catar', '2026-06-24 16:00:00', NULL, NULL, 'AGENDADO'),
 ('C', 'Escócia', 'Brasil', '2026-06-24 19:00:00', NULL, NULL, 'AGENDADO'),
 ('C', 'Marrocos', 'Haiti', '2026-06-24 19:00:00', NULL, NULL, 'AGENDADO'),
-('A', 'República Tcheca', 'México', '2026-06-24 22:00:00', NULL, NULL, 'AGENDADO'),
+('A', 'Rep. Tcheca', 'México', '2026-06-24 22:00:00', NULL, NULL, 'AGENDADO'),
 ('A', 'África do Sul', 'Coreia do Sul', '2026-06-24 22:00:00', NULL, NULL, 'AGENDADO'),
 
 -- Quinta-feira, 25 de junho de 2026
@@ -159,7 +159,7 @@ INSERT INTO jogos (grupo, time_casa, time_visitante, data_jogo, placar_casa, pla
 ('L', 'Panamá', 'Inglaterra', '2026-06-27 18:00:00', NULL, NULL, 'AGENDADO'),
 ('L', 'Croácia', 'Gana', '2026-06-27 18:00:00', NULL, NULL, 'AGENDADO'),
 ('K', 'Colômbia', 'Portugal', '2026-06-27 20:30:00', NULL, NULL, 'AGENDADO'),
-('K', 'República Democrática do Congo', 'Uzbequistão', '2026-06-27 20:30:00', NULL, NULL, 'AGENDADO'),
+('K', 'Rep. Dem. do Congo', 'Uzbequistão', '2026-06-27 20:30:00', NULL, NULL, 'AGENDADO'),
 ('J', 'Argélia', 'Áustria', '2026-06-27 23:00:00', NULL, NULL, 'AGENDADO'),
 ('J', 'Jordânia', 'Argentina', '2026-06-27 23:00:00', NULL, NULL, 'AGENDADO');
 
